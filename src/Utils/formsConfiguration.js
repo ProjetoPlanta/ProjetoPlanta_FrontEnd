@@ -3,21 +3,45 @@ const entityForms = {
     formFields:[
       {id:'nomeCientifico', name:'Nome Cientifico', type:'text', value: "", required: true},
       {id:'nomePopular', name:'Nome Popular', type:'text', value: "", required: true},
-      {id:'ambiente',name:'ambiente', type:'text', value:'', required: true},
+      {id:'ambiente',name:'ambiente', type:'select', value:'', required: true, 
+        options:[{value:'interno',name:'Interno'},{value:'externo',name:'Externo'}]
+      },
       {id:'atraiAbelha', name:'Atrai Abelha', type:'checkbox', value:false},
-      {id:'categoriaGeral', name:'Categoria Geral', type:'select', value :"" , required: true, options:[{value:'teste',name:'testando'},{value:'teste2',name:'testando2'}]},
+      {
+        id:'categoriaGeral', 
+        name:'Categoria Geral', 
+        type:'select', value :"" , required: true,
+        options:[{value:'Briofita',name:'Briofita'},{value:'pteridofita',name:'Pteridofita'},
+          {value:'Gimnosperma',name:'Gimnosperma'},{value:'Angiosperma',name:'Angiosperma'}
+        ]
+      },
       {id:'cicloVida', name:'Ciclo de vida', type:'text', value: "" , required: true},
       {id:'descricao', name:'Descrição', type:'description', value: "", required: true},
-      {id:'epocaFloracao', name:'Epoca de Floração', type:'text', value: "", required: true},
+      {id:'epocaFloracao', name:'Epoca de Floração', type:'select', value: "", required: true,
+        options:[{value:'inverno',name:'Inverno'},{value:'verão',name:'verão'},
+          {value:'outono',name:'Outono'},{value:'primavera',name:'Primavera'}
+        ]
+      },
       {id:'imagem', name:'Imagem', type:'text', value: "", required: true},
       {id:'medicinal', name:'Medicinal', type:'checkbox', value: false},
-      {id:'necessidadeAgua', name:'Necessidade de Agua', type:'text', value: "", required: true},
-      {id:'necessidadeLuz', name:'Necessidade de Luz', type:'text', value: "", required: true},
-      {id:'necessidadePoda', name:'Necessidade de Poda', type:'text', value: "", required: true},
-      {id:'porte', name:'Porte', type:'text', value: "", required: true},
+      {id:'necessidadeAgua', name:'Necessidade de Agua', type:'select', value: "", required: true,
+        options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+          {value:'alta',name:'Alta'},
+        ]
+      },
+      {id:'necessidadeLuz', name:'Necessidade de Luz', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+        {value:'alta',name:'Alta'},
+      ]},
+      {id:'necessidadePoda', name:'Necessidade de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+        {value:'alta',name:'Alta'},
+      ]},
+      {id:'porte', name:'Porte', type:'select', value: "", required: true, 
+        options:[{value:'pequeno',name:'Pequeno'},{value:'media',name:'Média'},
+        {value:'grande',name:'Grande'}]},
       {id: 'preco', name:'Preço', type:'number', value: "", required: true},
       {id:'toxicidade', name:'Toxidade', type:'checkbox', value: false,},
-      {id:'umidadeSolo', name:'Umidade de Solo', type:'text', value: "", required: true}
+      {id:'umidadeSolo', name:'Umidade de Solo', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+        {value:'alta',name:'Alta'}]}
     ]
     }
 
