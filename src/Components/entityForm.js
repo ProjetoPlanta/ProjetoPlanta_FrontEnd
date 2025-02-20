@@ -1,7 +1,7 @@
 import React, { useState, useEffect  } from "react";
 import { TextField, Checkbox, FormControlLabel, Button, Container, Box, MenuItem } from "@mui/material";
 import entityForms from '../Utils/formsConfiguration'
-const EntityForm = ({detailsFields, handleSubmitForm}) => {
+const EntityForm = ({detailsFields, handleSubmitForm, entityValue}) => {
   const [formData, setFormData] = useState([]);
 
   const handleChange = (e) => {
@@ -23,7 +23,11 @@ const EntityForm = ({detailsFields, handleSubmitForm}) => {
   useEffect(() => {
     Object.keys(entityForms).forEach(key =>{
         if (key === detailsFields){
-            setFormData(entityForms[key].formFields)
+          let forms = entityForms[key].formFields
+            if(entityValue){
+              forms = forms.map(el => ({...el, value: entityValue[el.id]}))
+            }
+            setFormData(forms)
         }
     })
 

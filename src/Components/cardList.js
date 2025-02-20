@@ -1,11 +1,11 @@
 import React from "react";
 import { Card, CardContent, Typography, Box, Button } from "@mui/material";
 
-const CardList = ({ items, showDeleteButton, handleDeleteButton }) => {
+const CardList = ({ items, showDeleteButton, handleDeleteButton, clickCard }) => {
   return (
     <Box display="flex" flexWrap="wrap" gap={2} justifyContent="center" mt={4}>
     {items.map((item, index) => (
-      <Card key={index} sx={{ width: 300, padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+      <Card key={index} sx={{ width: 300, padding: 2, display: "flex", flexDirection: "column", justifyContent: "space-between" } } onClick={ () => clickCard(item)}>
         <CardContent>
           <Typography variant="h6" component="div">
             {item.nome}

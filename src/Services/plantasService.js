@@ -1,3 +1,4 @@
+import UpdatePlanta from '../Pages/updatePlanta';
 import api from './ServiceConfig';
 
 const API_URL = '/plantas';
@@ -6,6 +7,16 @@ const PlantaService = {
   cadastrarPlanta: async (planta) => {
     try {
       const response = await api.post(API_URL, planta);
+      return response.status;
+    } catch (error) {
+      console.error('Erro ao cadastrar planta:', error);
+      throw error;
+    }
+  },
+
+  updatePlanta: async (id,planta) => {
+    try {
+      const response = await api.put(`${API_URL}/${id}`, planta);
       return response.status;
     } catch (error) {
       console.error('Erro ao cadastrar planta:', error);
