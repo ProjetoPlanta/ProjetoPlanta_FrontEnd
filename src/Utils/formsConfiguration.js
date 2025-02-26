@@ -2,12 +2,12 @@ const entityForms = {
     formLogin:[
       {
         formFields: [
-          {id:'login', name:'Login', type:'text', value: "", required: true},
+          {id:'login', name:'Login', type:'email', value: "", required: true},
         ]
       },
       {
         formFields: [
-          {id:'senha', name:'Senha', type:'text', value: "", required: true},
+          {id:'senha', name:'Senha', type:'password', value: "", required: true},
         ]
       },
     ],

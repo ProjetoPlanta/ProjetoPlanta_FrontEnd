@@ -1,0 +1,140 @@
+import React from "react";
+import { Card, CardContent, Typography, Stack, Button, TextField, Box, IconButton } from "@mui/material";
+import InfoIcon from "@mui/icons-material/Info";
+import WbSunny from "@mui/icons-material/WbSunny";
+import Yard from "@mui/icons-material/Yard";
+import WaterDrop from "@mui/icons-material/WaterDrop";
+import Grass from "@mui/icons-material/Grass"
+import Forest from "@mui/icons-material/Forest"
+import productImage from "../Imgs/samambaia.jpg";
+import Header from '../Components/header'
+import { useParams } from 'react-router-dom';
+import  { useState, useEffect  } from "react";
+import PlantaService from "../Services/plantasService"
+
+export default function VerPlanta() {
+    const { id } = useParams();     
+    const [planta, setPlanta] = useState([]);
+
+    const handlePlanta = async () => {
+        const response =  await PlantaService.getPlanta(id)
+        setPlanta(response)
+    }
+
+     useEffect( () => { 
+            handlePlanta()
+          }, []);
+      return (
+        <>
+        <Header/>
+        <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={2} padding={5}>
+        {/* Primeira Parte */}
+        <Box flex={1}>
+          <Box component="img" src={productImage} width="100%" mb={2} borderRadius={2} />
+          <Card>
+            <CardContent>
+              <Box display="flex" alignItems="center" mb={2}>
+                <Box>
+                  <Typography variant="h6">Descrição do Produto</Typography>
+                  <Typography variant="body2" color="textSecondary">{planta?.descricao}</Typography>
+                </Box>
+                
+              </Box>
+              <Box display="flex" flexWrap="wrap" gap={2}>
+                <Box width={{ xs: "100%", sm: "48%" }}    justifyContent="center" 
+                >
+                  {[
+                    { label: "Necessidade de Poda", value: planta?.necessidadePoda, icon: Forest },
+                    { label: "Umidade do Solo", value: planta?.umidadeSolo, icon: Grass },
+                    { label: "Necessidade de Água", value: planta?.necessidadeAgua, icon: WaterDrop },
+                    ].map((item,index) => (
+                    <Card variant="outlined" key={index} sx={{ mb: 2 }}>
+                    <CardContent textAlign="center" >  
+                        <Box key={index} textAlign="center" >   
+                        <item.icon sx={{ verticalAlign: "middle" }} />
+                        <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
+                            {item.value}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary" display="block">
+                            {item.label}
+                        </Typography>
+                       
+                        </Box>
+                       
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Box>
+
+
+                <Box width={{ xs: "100%", sm: "48%" }}    justifyContent="center" 
+                >
+                  {[
+                    { label: "Necessidade de Luz", value: planta?.necessidadeLuz, icon: WbSunny },
+                    { label: "Epoca de Floração", value: planta?.epocaFloracao, icon: Yard },
+                    ].map((item,index) => (
+                    <Card variant="outlined" key={index} sx={{ mb: 2 }}>
+                    <CardContent textAlign="center" >  
+                        <Box key={index} textAlign="center" >   
+                        <item.icon sx={{ verticalAlign: "middle" }} />
+                        <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
+                            {item.value}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary" display="block">
+                            {item.label}
+                        </Typography>
+                       
+                        </Box>
+                       
+                      </CardContent>
+                    </Card>
+                  ))}
+                </Box>
+
+
+
+              </Box>
+            </CardContent>
+          </Card>
+        </Box>
+        
+              {/* Segunda Parte */}
+              <Box flex={1}>
+                    <Typography variant="h4" gutterBottom>{planta?.nomePopular}</Typography>    
+                    <Typography variant="h5" color="textSecondary" gutterBottom>R$ {planta.preco}</Typography>
+                    <TextField label="Quantidade" type="number" fullWidth variant="outlined" sx={{ mb: 2 }} />
+                    <Button variant="contained" sx={{ backgroundColor: "black", color: "white", mb:2 }} fullWidth >Reservar</Button>
+                    <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
+                    {[
+                        { label: "Porte", value: planta?.porte },
+                        { label: "Categoria", value: planta?.categoriaGeral },
+                        { label: "Ambiente", value: planta?.ambiente },
+                        { label: "PetFrendly", value: planta.toxidade ? 'Não' : 'Sim' }
+                    ].map((item, index) => (
+                        <Box key={index} textAlign="center" width="23%">
+                        <Typography variant="caption" display="block">{item.label}</Typography>
+                        <Typography variant="body1" fontWeight="bold">
+                            {item.value}
+                        </Typography>
+                        </Box>
+                    ))}
+                    </Stack>
+                    <Box border={1} borderRadius={2} p={2} >
+                        <Box  display="flex" alignItems="center"> 
+                            <IconButton>
+                                <InfoIcon />
+                            </IconButton>
+                        
+                            <Typography variant="subtitle1" gutterBottom>Como Cuidar</Typography>
+                        </Box> 
+                        
+                       
+                        <Typography ml={5}  variant="body1">{planta?.cicloVida}</Typography>
+                         
+                    </Box>
+                </Box>
+                </Box>
+                </>
+          );
+  }
+  

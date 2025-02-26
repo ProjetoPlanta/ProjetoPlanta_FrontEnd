@@ -9,8 +9,7 @@ const PlantaService = {
       const response = await api.post(API_URL, planta);
       return response.status;
     } catch (error) {
-      console.error('Erro ao cadastrar planta:', error);
-      throw error;
+
     }
   },
 
@@ -19,8 +18,7 @@ const PlantaService = {
       const response = await api.put(`${API_URL}/${id}`, planta);
       return response.status;
     } catch (error) {
-      console.error('Erro ao cadastrar planta:', error);
-      throw error;
+     
     }
   },
   
@@ -29,8 +27,7 @@ const PlantaService = {
       const response = await api.delete(`${API_URL}/${id}`);
       return response.status;
     } catch (error) {
-      console.error('Erro ao deletar planta:', error);
-      throw error;
+      
     }
   },
 
@@ -39,8 +36,16 @@ const PlantaService = {
       const response = await api.get(API_URL);
       return response.data;
     } catch (error) {
-      console.error('Erro  ao acessar Plantas:', error);
-      throw error;
+    
+    }
+  },
+
+  getPlanta: async (id) => {
+    try {
+      const response = await api.get(`${API_URL}/${id}`);
+      return response.data;
+    } catch (error) {
+      
     }
   }
 };

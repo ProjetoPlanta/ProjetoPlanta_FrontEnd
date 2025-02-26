@@ -4,7 +4,7 @@ import EntityForm from '../Components/entityForm'
 import {Typography,Snackbar,Alert } from '@mui/material';
 import { useState } from "react";
 import PlantaService from "../Services/plantasService"
-
+import DragImage from "../Components/dragImage"
 
 export default function CadastroPlanta({handlechangePage}) {
 
@@ -24,6 +24,11 @@ export default function CadastroPlanta({handlechangePage}) {
           <Typography  sx={{ marginBottom: 2 }}>
            Cadastre uma Planta
           </Typography>
+          <Box mb={5}>
+            <DragImage
+
+            />
+          </Box>
           <EntityForm
             detailsFields='formCadastroPlanta'
             handleSubmitForm={handleSubmit}

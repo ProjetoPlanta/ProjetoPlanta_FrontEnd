@@ -7,7 +7,6 @@ import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import { useState } from "react";
 import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
-
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -16,6 +15,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import Button from '@mui/material/Button';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { BrowserRouter as Router } from "react-router-dom";
@@ -118,7 +118,6 @@ export default function Admin() {
   };
 
 
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -126,7 +125,6 @@ export default function Admin() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -136,7 +134,9 @@ export default function Admin() {
      <Header 
         open={open}
         handleDrawerOpen={handleDrawerOpen}
+        isAdmin={true}
      />
+     
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>

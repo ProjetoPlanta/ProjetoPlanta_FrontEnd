@@ -8,16 +8,16 @@ import CardList from '../Components/cardList';
 import PlantaService from "../Services/plantasService"; 
 import { useState, useEffect } from "react";
 import "../Styles/login.css";
+import { useNavigate } from "react-router-dom";
 import SamambaiaImage from '../Imgs/samambaia.jpg';
 
 
 export default function Home({planta, setUpdatePage}) {
 
      const [open, setOpen] = useState(false)
-
       const [plantasList, setPlantasList] = React.useState([]);
       const [selectedCategory, setSelectedCategory] = useState('Todas');
-
+       const navigate = useNavigate();
       // Categorias exemplo só
       const categories = ['Todas', 'Categoria 1', 'Categoria 2', 'Categoria 3'];
 
@@ -30,6 +30,12 @@ export default function Home({planta, setUpdatePage}) {
         handlePlantas();
       }, []);
       
+     const handleNavigate = async (data) =>{
+      console.log("wqdqwdwq",data)
+      navigate(`/ver-planta/${data.id}`);
+      }
+
+
       //futuro filtro pra eu não me perder
       const handleCategoryClick = (cat) => {
         setSelectedCategory(cat);
@@ -78,7 +84,8 @@ export default function Home({planta, setUpdatePage}) {
                 <CardList
                   items={plantasList}
                   showDeleteButton={false} 
-                  clickCard={() => {}} // futuro direcionamento pra pagina planta
+                  
+                  clickCard={handleNavigate} // futuro direcionamento pra pagina planta
                 />
             </Container>
 
