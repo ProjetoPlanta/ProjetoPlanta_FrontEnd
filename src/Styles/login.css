@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .form-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+
+  .full-height {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .wider-card {
+    padding: 40px;
+    width: 90%;
+    max-width: 800px;
+  }
+  
+
+  .image-section {
+    flex: 1;
+    background-image: url('../Imgs/fundo-login.jpg');
+    background-size: cover;
+    background-position: center;
+  }

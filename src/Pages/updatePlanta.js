@@ -12,9 +12,10 @@ export default function UpdatePlanta({planta, setUpdatePage}) {
 
 
       const handleSubmit = async (submitedData) => {
-       const response =  await PlantaService.updatePlanta(submitedData.nomePopular,submitedData)
+       const response =  await PlantaService.updatePlanta(submitedData.id,submitedData)
         if(response === 200){
             setOpen(true)
+            setUpdatePage(true)
         } 
       };
     return (
@@ -27,13 +28,14 @@ export default function UpdatePlanta({planta, setUpdatePage}) {
             detailsFields='formCadastroPlanta'
             handleSubmitForm={handleSubmit}
             entityValue={planta}
+            isBackButton={true}
+            handleBackButton={setUpdatePage}
           />
            <Snackbar open={open} autoHideDuration={1000} onClose={() => setOpen(false)}   anchorOrigin={{ vertical: "top", horizontal: "center" }}>
                 <Alert onClose={() => setOpen(false)} severity="success"   sx={{ mt: 6 }}>
                     Planta atualzada com sucesso!
                 </Alert>
             </Snackbar>
-            <Button className='mt-5' type="submit" variant="contained" color="primary" onClick={ () => setUpdatePage()}>Voltar</Button>
         </Box>
      
     );

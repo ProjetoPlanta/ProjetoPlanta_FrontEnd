@@ -1,12 +1,16 @@
 import React, { useState, useEffect  } from "react";
 import { TextField, Checkbox, FormControlLabel, Button, Container, Box, MenuItem } from "@mui/material";
 import entityForms from '../Utils/formsConfiguration'
-const EntityForm = ({detailsFields, handleSubmitForm, entityValue}) => {
+const EntityForm = ({detailsFields, handleSubmitForm, entityValue, isBackButton, handleBackButton}) => {
   const [formData, setFormData] = useState([]);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-      const formNewData  = formData.map(el => el.id == name ? type === "checkbox" ? {...el, value : checked} : {...el, value :value } : el)
+      const formNewData  = formData.map(el =>({ formFields: el.formFields.map(formField =>  
+        formField.id == name ? type === "checkbox" ?
+         {...formField, value : checked} : {...formField, value :value } 
+         : formField
+      )}))
       setFormData(formNewData);
   };
 
@@ -14,8 +18,15 @@ const EntityForm = ({detailsFields, handleSubmitForm, entityValue}) => {
     e.preventDefault();
       let submitedData = {}
         formData.forEach(el => {
-            submitedData[el.id] = el.value
+          el.formFields.forEach(formField =>{
+            submitedData[formField.id] = formField.value
+          })
+            
         });
+
+        if(entityValue){
+          submitedData = {...submitedData, id:entityValue.id }
+        }
 
         handleSubmitForm(submitedData)
   };
@@ -23,77 +34,82 @@ const EntityForm = ({detailsFields, handleSubmitForm, entityValue}) => {
   useEffect(() => {
     Object.keys(entityForms).forEach(key =>{
         if (key === detailsFields){
-          let forms = entityForms[key].formFields
+          let forms = entityForms[key]
+
             if(entityValue){
-              forms = forms.map(el => ({...el, value: entityValue[el.id]}))
+              forms = forms.map(el =>({ formFields : el.formFields.map( formField => ({...formField, value: entityValue[formField.id]}))}))
             }
             setFormData(forms)
-        }
+        } 
     })
 
   }, []);
 
   return (
-     <form onSubmit={handleSubmit}>
-             <Box display="flex" flexDirection="column" gap={2}>
-               {formData.map((formField) => { 
-                 if(formField.type === 'checkbox'){
-                 return(    
-                   <FormControlLabel
-                     key={formField.id}
-                     control={<Checkbox name={formField.id} 
-                     checked={formField.value}
-                     onChange={handleChange} />}
-                     label={formField.name}
-                   />
-                 )} 
-                 if(formField.type === 'text' ||  formField.type === 'number'){
-                 return(
-                   <TextField
-                     key={formField.id}
-                     label={formField.name}
-                     name={formField.id}
-                     value={formField.value}
-                     onChange={handleChange}
-                     required={formField.required}
-                     type={formField.type}
-                   />        
-                 )}
-                 if(formField.type === 'description'){
-                   return(
-                     <TextField
-                       key={formField.id}
-                       rows={8}
-                       multiline
-                       label={formField.name}
-                       name={formField.id}
-                       value={formField.value}
-                       onChange={handleChange}
-                       required={formField.required}
-                       type={formField.type}
-                     />        
-                   )}
-                 if(formField.type === 'select'){
-                   return(
-                     <TextField
-                       key={formField.id}
-                       select
-                       label={formField.name}
-                       name={formField.id}
-                       value={formField.value}
-                       onChange={handleChange}
-                       required={formField.required}
-                       type={formField.type}
-                   >     
-                    {formField.options.map(option =>   
-                       <MenuItem key={option.value} value={option.value}>{option.name}</MenuItem> 
-                    )} 
-                   </TextField>
-                   )}
-               })}
-               <Button type="submit" variant="contained" color="primary">Enviar</Button>
-             </Box>
-           </form>
+    <form onSubmit={handleSubmit}>
+    <Box display="flex" flexDirection="column" gap={2}>
+      {formData.map((formCol, colIndex) => (
+        <Box key={colIndex} display="flex" gap={2} width="100%">
+          {formCol.formFields?.map((formField) => (
+            <Box key={formField.id} flex={1} minWidth={0}>
+              {formField.type === "checkbox" ? (
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      name={formField.id}
+                      checked={formField.value}
+                      onChange={handleChange}
+                    />
+                  }
+                  label={formField.name}
+                />
+              ) : formField.type === "select" ? (
+                <TextField
+                  select
+                  label={formField.name}
+                  name={formField.id}
+                  value={formField.value}
+                  onChange={handleChange}
+                  required={formField.required}
+                  fullWidth
+                >
+                  {formField.options.map((option) => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.name}
+                    </MenuItem>
+                  ))}
+                </TextField>
+              ) : (
+                <TextField
+                  label={formField.name}
+                  name={formField.id}
+                  value={formField.value}
+                  onChange={handleChange}
+                  required={formField.required}
+                  type={formField.type}
+                  fullWidth
+                  multiline={formField.type === "description"}
+                  rows={formField.type === "description" ? 4 : 1}
+                />
+              )}
+            </Box>
+          ))}
+        </Box>
+      ))}
+  
+      {/* Botões */}
+      <Box display="flex" justifyContent="space-between" mt={3}>
+        {isBackButton && (
+          <Button variant="outlined" onClick={handleBackButton}>
+            Voltar
+          </Button>
+        )}
+        <Button type="submit" variant="contained" color="primary">
+          Enviar
+        </Button>
+      </Box>
+    </Box>
+  </form>
 
   );
 };

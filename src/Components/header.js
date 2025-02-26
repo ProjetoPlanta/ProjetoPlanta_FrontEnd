@@ -26,11 +26,11 @@ export default function ButtonAppBar({open, handleDrawerOpen}) {
         
       </IconButton>
          <img
-                  src={require('../Imgs/logo-escuro.jpg')} 
-                  alt="logo"
-                  height='70px'
-                  loading="lazy"
-            />
+            src={require('../Imgs/logo-escuro.jpg')} 
+            alt="logo"
+            height='70px'
+            loading="lazy"
+          />
     </Toolbar>
   // </AppBar>
   );

@@ -17,6 +17,7 @@ export default function VisualizarPlanta() {
     const [isUpdate, setIsUpdate] = useState(false)
 
     const [open, setOpen] = useState(false)
+    const [message, setMessage] = useState('')
 
     const handlePlantas = async () => {
         const response =  await PlantaService.getAllPlantas()
@@ -29,15 +30,20 @@ export default function VisualizarPlanta() {
     }
 
     const handleDeletePlantas = async (item) => {
-        const response =  await PlantaService.deletePlanta(item.nome)
+        const response =  await PlantaService.deletePlanta(item.id)
         if(response === 200){
             setOpen(true)
             handlePlantas()
+            setMessage('Planta Deletada com Sucesso')
         } 
     }
 
-    const handleGoBack = async () => {
+    const handleGoBack = async (isUpdate) => {
        setIsUpdate(false)
+       if(isUpdate){
+            setMessage('Planta Atualizada com Sucesso')
+            handlePlantas()
+       }
     }
 
     useEffect( () => { 
@@ -60,8 +66,8 @@ return (
           />
 
            <Snackbar open={open} autoHideDuration={1000} onClose={() => setOpen(false)}   anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-                <Alert onClose={() => setOpen(false)} severity="success"   sx={{ mt: 6 }}>
-                    Planta Deletada com sucesso!
+                <Alert onClose={() => setOpen(false)} severity="success" sx={{ mt: 6 }}>
+                    {message}
                 </Alert>
         </Snackbar>
         </>

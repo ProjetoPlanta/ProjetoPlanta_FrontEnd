@@ -111,7 +111,9 @@ export default function Admin() {
 
   const [currentPage, setCurrentPage] = useState("Cadastro");
   const pages = {
-    Cadastro: <CadastroPlanta/>, 
+    Cadastro: <CadastroPlanta
+                  handlechangePage={setCurrentPage}   
+                />, 
     Plantas: <VisualizarPlanta/>,
   };
 
@@ -198,12 +200,8 @@ export default function Admin() {
        
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-
-        <Router>
+        <DrawerHeader /> 
           <div>{pages[currentPage]}</div>
-        </Router>
-
       </Box>
     </Box>
   );

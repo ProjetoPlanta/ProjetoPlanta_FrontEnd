@@ -6,7 +6,7 @@ import { useState } from "react";
 import PlantaService from "../Services/plantasService"
 
 
-export default function CadastroPlanta() {
+export default function CadastroPlanta({handlechangePage}) {
 
      const [open, setOpen] = useState(false)
 
@@ -15,6 +15,7 @@ export default function CadastroPlanta() {
        const response =  await PlantaService.cadastrarPlanta(submitedData)
         if(response === 200){
             setOpen(true)
+            handlechangePage('Plantas')
         } 
       };
     

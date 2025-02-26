@@ -1,11 +1,11 @@
 import './App.css';
-
-import Admin from './Pages/admin'
+import AppRoutes from './Utils/Routes';
 function App() {
   return (
     <div className="App">
-    
-      <Admin/>
+      
+      <AppRoutes />
+      
     </div>
   );
 }
