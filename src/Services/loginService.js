@@ -1,4 +1,3 @@
-import UpdatePlanta from '../Pages/updatePlanta';
 import api from './ServiceConfig';
 
 const API_URL = '/account/login';

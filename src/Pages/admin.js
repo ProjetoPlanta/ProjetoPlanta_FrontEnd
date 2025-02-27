@@ -107,9 +107,7 @@ export default function Admin() {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
-
-
-  const [currentPage, setCurrentPage] = useState("Cadastro");
+  const [currentPage, setCurrentPage] = useState("Plantas");
   const pages = {
     Cadastro: <CadastroPlanta
                   handlechangePage={setCurrentPage}   

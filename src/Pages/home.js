@@ -31,7 +31,6 @@ export default function Home({planta, setUpdatePage}) {
       }, []);
       
      const handleNavigate = async (data) =>{
-      console.log("wqdqwdwq",data)
       navigate(`/ver-planta/${data.id}`);
       }
 

@@ -9,16 +9,19 @@ import DragImage from "../Components/dragImage"
 export default function CadastroPlanta({handlechangePage}) {
 
      const [open, setOpen] = useState(false)
-
+     const [imagem, setImagem] = useState(null)
 
       const handleSubmit = async (submitedData) => {
+        if(imagem){
+          submitedData =  {...submitedData, imagem:imagem, caminhoImagem:'dqwdqwdqwdqwdwq'}
+        }
        const response =  await PlantaService.cadastrarPlanta(submitedData)
         if(response === 200){
             setOpen(true)
             handlechangePage('Plantas')
         } 
       };
-    
+
     return (
     <Box>
           <Typography  sx={{ marginBottom: 2 }}>
@@ -26,7 +29,7 @@ export default function CadastroPlanta({handlechangePage}) {
           </Typography>
           <Box mb={5}>
             <DragImage
-
+            handleUpload={setImagem}
             />
           </Box>
           <EntityForm

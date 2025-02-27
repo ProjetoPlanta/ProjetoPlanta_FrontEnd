@@ -50,9 +50,10 @@ const entityForms = {
               {value:'outono',name:'Outono'},{value:'primavera',name:'Primavera'}
             ]
           },
-          {id:'imagem', name:'Imagem', type:'text', value: "", required: true},
           {id: 'preco', name:'Preço', type:'number', value: "", required: true},
-        
+          {id:'necessidadePoda', name:'Necessidade de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+            {value:'alta',name:'Alta'},
+          ]},
         ]
       },
       {
@@ -67,9 +68,7 @@ const entityForms = {
           {id:'necessidadeLuz', name:'Necessidade de Luz', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
             {value:'alta',name:'Alta'},
           ]},
-          {id:'necessidadePoda', name:'Necessidade de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
-            {value:'alta',name:'Alta'},
-          ]},
+          
           {id:'umidadeSolo', name:'Umidade de Solo', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
             {value:'alta',name:'Alta'}]}
         ]

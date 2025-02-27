@@ -4,38 +4,45 @@ import EntityForm from '../Components/entityForm'
 import {Typography,Snackbar,Alert,Button } from '@mui/material';
 import { useState, useEffect } from "react";
 import PlantaService from "../Services/plantasService"
-
+import DragImage from "../Components/dragImage"
 
 export default function UpdatePlanta({planta, setUpdatePage}) {
 
-     const [open, setOpen] = useState(false)
-
+     const [imagem, setImagem] = useState(null)
 
       const handleSubmit = async (submitedData) => {
+        if(imagem){
+          submitedData =  {...submitedData, imagem:imagem, caminhoImagem:'dqwdqwdqwdqwdwq'}
+        }
        const response =  await PlantaService.updatePlanta(submitedData.id,submitedData)
         if(response === 200){
-            setOpen(true)
             setUpdatePage(true)
         } 
       };
+
+      const handleGoBack = () => {
+        setUpdatePage(false)
+      }
+
     return (
     <Box>
           <Typography  sx={{ marginBottom: 2 }}>
            atualize uma Planta
           </Typography>
-          
+          <Box mb={5}>
+            <DragImage
+            handleUpload={setImagem}
+            previewImage={planta.imagem}
+            />
+          </Box>
           <EntityForm
             detailsFields='formCadastroPlanta'
             handleSubmitForm={handleSubmit}
             entityValue={planta}
             isBackButton={true}
-            handleBackButton={setUpdatePage}
+            handleBackButton={handleGoBack}
           />
-           <Snackbar open={open} autoHideDuration={1000} onClose={() => setOpen(false)}   anchorOrigin={{ vertical: "top", horizontal: "center" }}>
-                <Alert onClose={() => setOpen(false)} severity="success"   sx={{ mt: 6 }}>
-                    Planta atualzada com sucesso!
-                </Alert>
-            </Snackbar>
+      
         </Box>
      
     );

@@ -1,4 +1,3 @@
-import UpdatePlanta from '../Pages/updatePlanta';
 import api from './ServiceConfig';
 
 const API_URL = '/plantas';
@@ -9,7 +8,7 @@ const PlantaService = {
       const response = await api.post(API_URL, planta);
       return response.status;
     } catch (error) {
-
+      return error
     }
   },
 
@@ -18,7 +17,7 @@ const PlantaService = {
       const response = await api.put(`${API_URL}/${id}`, planta);
       return response.status;
     } catch (error) {
-     
+      return {error: error, message:"Erro ao atualizar planta"}
     }
   },
   
@@ -27,7 +26,7 @@ const PlantaService = {
       const response = await api.delete(`${API_URL}/${id}`);
       return response.status;
     } catch (error) {
-      
+      return {error: error, message:"Erro ao deletar Planta"}
     }
   },
 
@@ -36,7 +35,7 @@ const PlantaService = {
       const response = await api.get(API_URL);
       return response.data;
     } catch (error) {
-    
+      return {error: error, message:"Erro ao buscar Planta"}
     }
   },
 
@@ -45,7 +44,7 @@ const PlantaService = {
       const response = await api.get(`${API_URL}/${id}`);
       return response.data;
     } catch (error) {
-      
+      return {error: error, message:"Erro ao buscar Planta"}
     }
   }
 };

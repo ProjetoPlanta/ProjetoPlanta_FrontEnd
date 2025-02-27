@@ -30,7 +30,7 @@ export default function VerPlanta() {
         <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={2} padding={5}>
         {/* Primeira Parte */}
         <Box flex={1}>
-          <Box component="img" src={productImage} width="100%" mb={2} borderRadius={2} />
+          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="500px" mb={2} borderRadius={2} boxShadow={1} />
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
