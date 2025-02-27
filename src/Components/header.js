@@ -10,11 +10,13 @@ import { logout } from '../Store/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import LogoutIcon from '@mui/icons-material/Logout';
+import { useAuth } from '../Hooks/useAuth';
 
 
 export default function ButtonAppBar({open, handleDrawerOpen, isAdmin}) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { isAuthenticated } = useAuth();
   const handleLogout = () => {
     dispatch(logout());
     navigate('/login');
@@ -49,9 +51,12 @@ export default function ButtonAppBar({open, handleDrawerOpen, isAdmin}) {
             height='70px'
             loading="lazy"
           />
-       { !isAdmin && 
+       
         <Button sx={[{color: 'white'}]} onClick={() => navigate("/")}>Home</Button>
-       }
+        { isAuthenticated && (
+        <Button sx={[{color: 'white'}]} onClick={() => navigate("/admin")}>Admin</Button>
+        )
+        }
         {/* <Button color="inherit" onClick={() => navigate("/about")}>Sobre</Button>
         <Button color="inherit" onClick={() => navigate("/contact")}>Contato</Button> */}
        {isAdmin && (

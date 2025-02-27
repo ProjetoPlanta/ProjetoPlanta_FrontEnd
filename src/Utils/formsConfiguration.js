@@ -25,6 +25,11 @@ const entityForms = {
       },
       {
         formFields:[
+          {id:'cicloVida', name:'Como Cuidar', type:'description', value: "" , required: true},
+        ],
+      },
+      {
+        formFields:[
           {id:'ambiente',name:'ambiente', type:'select', value:'', required: true, 
             options:[{value:'interno',name:'Interno'},{value:'externo',name:'Externo'}]
           },
@@ -37,7 +42,7 @@ const entityForms = {
               {value:'Gimnosperma',name:'Gimnosperma'},{value:'Angiosperma',name:'Angiosperma'}
             ]
           },
-          {id:'cicloVida', name:'Ciclo de vida', type:'text', value: "" , required: true},
+         
         ]
       },
       {
@@ -75,7 +80,7 @@ const entityForms = {
       },
       {
         formFields:[
-          {id:'toxicidade', name:'Toxidade', type:'checkbox', value: false,},
+          {id:'toxicidade', name:'Pet Friendly', type:'checkbox', value: false,},
           {id:'medicinal', name:'Medicinal', type:'checkbox', value: false},
           {id:'atraiAbelha', name:'Atrai Abelha', type:'checkbox', value:false},
           

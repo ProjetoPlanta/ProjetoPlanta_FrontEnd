@@ -27,16 +27,16 @@ export default function VerPlanta() {
       return (
         <>
         <Header/>
-        <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={2} padding={5}>
+        <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={8} padding={5}>
         {/* Primeira Parte */}
         <Box flex={1}>
-          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="500px" mb={2} borderRadius={2} boxShadow={1} />
+          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="700px" mb={2} borderRadius={2} boxShadow={1} />
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
                 <Box>
-                  <Typography variant="h6">Descrição do Produto</Typography>
-                  <Typography variant="body2" color="textSecondary">{planta?.descricao}</Typography>
+                  <Typography variant="h4">Descrição do Produto</Typography>
+                  <Typography variant="h6" color="textSecondary">{planta?.descricao}</Typography>
                 </Box>
                 
               </Box>
@@ -72,6 +72,7 @@ export default function VerPlanta() {
                   {[
                     { label: "Necessidade de Luz", value: planta?.necessidadeLuz, icon: WbSunny },
                     { label: "Epoca de Floração", value: planta?.epocaFloracao, icon: Yard },
+                    { label: "Medicinal", value: planta?.medicinal ? "Sim" : "Não", icon: Grass },
                     ].map((item,index) => (
                     <Card variant="outlined" key={index} sx={{ mb: 2 }}>
                     <CardContent textAlign="center" >  
@@ -119,7 +120,7 @@ export default function VerPlanta() {
                         </Box>
                     ))}
                     </Stack>
-                    <Box border={1} borderRadius={2} p={2} >
+                    <Box border={1} borderRadius={2} p={2} mt={5}>
                         <Box  display="flex" alignItems="center"> 
                             <IconButton>
                                 <InfoIcon />
@@ -129,7 +130,7 @@ export default function VerPlanta() {
                         </Box> 
                         
                        
-                        <Typography ml={5}  variant="body1">{planta?.cicloVida}</Typography>
+                        <Typography ml={5}  sx={{ textAlign:"justify"}} variant="h6">{planta?.cicloVida}</Typography>
                          
                     </Box>
                 </Box>
