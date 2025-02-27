@@ -39,6 +39,10 @@ const CardList = ({ items, showDeleteButton, handleDeleteButton, clickCard }) =>
           {item.descricao}
         </Typography>
 
+        <Typography fontWeight="bold" variant="body1" color="text.secondary" sx={{ textAlign: "center", flexGrow: 1 }}>
+          R$ {item.preco}
+        </Typography>
+
         {showDeleteButton && (
           <IconButton color="error" onClick={() => handleDeleteButton(item)}>
             <DeleteIcon sx={{ fontSize: 32 }} />
