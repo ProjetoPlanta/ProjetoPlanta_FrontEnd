@@ -25,7 +25,7 @@ const entityForms = {
       },
       {
         formFields:[
-          {id:'cicloVida', name:'Como Cuidar', type:'description', value: "" , required: true},
+          {id:'comoCuidar', name:'Como Cuidar', type:'description', value: "" , required: true},
         ],
       },
       {

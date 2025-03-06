@@ -37,7 +37,10 @@ export default function VisualizarPlanta() {
 
     const handlePlantas = async () => {
         const response =  await PlantaService.getAllPlantas()
-        setPlantas(response?.map(el =>( {...el, nome: el.nomePopular} ?? [])))
+        if(response.length){
+            setPlantas(response?.map(el =>( {...el, nome: el.nomePopular} ?? [])))
+        }
+        
     }
 
     const handleUpdatePlanta = (planta) =>{

@@ -21,6 +21,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import { BrowserRouter as Router } from "react-router-dom";
 import CadastroPlanta from './cadastroPlanta'
 import VisualizarPlanta from './visualizarPlanta'
+import Movimentacoes from './movimentacoes'
+import Pedidos from './Pedidos';
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -113,6 +115,8 @@ export default function Admin() {
                   handlechangePage={setCurrentPage}   
                 />, 
     Plantas: <VisualizarPlanta/>,
+    Pedidos: <Pedidos/>,
+    Estoque: <Movimentacoes/>
   };
 
 
@@ -144,7 +148,7 @@ export default function Admin() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Cadastro', 'Plantas'].map((text, index) => (
+          {['Cadastro', 'Plantas','Pedidos','Estoque'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={() => setCurrentPage(text)}>
               <ListItemButton
                 sx={[

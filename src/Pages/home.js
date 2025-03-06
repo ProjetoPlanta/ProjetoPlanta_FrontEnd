@@ -24,7 +24,10 @@ export default function Home({planta, setUpdatePage}) {
       // Carrega plantas
       const handlePlantas = async () => {
         const response = await PlantaService.getAllPlantas();
-        setPlantasList(response.slice(0, 8).map(el => ({ ...el, nome: el.nomePopular})))
+        if(response.length){
+          setPlantasList(response?.slice(0, 8).map(el => ({ ...el, nome: el.nomePopular})))
+        }
+        
       };
       React.useEffect(() => {
         handlePlantas();
