@@ -151,7 +151,7 @@ const Movimentacoes = () => {
       {/* Histórico de Movimentações */}
       <Accordion>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="h6">Histórico de Movimentações</Typography>
+          <Typography variant="h5">Histórico de Movimentações</Typography>
         </AccordionSummary>
         <AccordionDetails>
           {movimentacoes.map((movimentacao, index) => {

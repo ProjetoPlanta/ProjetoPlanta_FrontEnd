@@ -24,8 +24,8 @@ export default function CadastroPlanta({handlechangePage}) {
 
     return (
     <Box>
-          <Typography  sx={{ marginBottom: 2 }}>
-           Cadastre uma Planta
+          <Typography variant='h5' sx={{fontFamily: "Qeilab",  marginBottom: 2 }}>
+           Cadastrar uma Planta
           </Typography>
           <Box mb={5}>
             <DragImage

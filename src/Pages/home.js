@@ -9,10 +9,7 @@ import PlantaService from "../Services/plantasService";
 import { useState, useEffect } from "react";
 import "../Styles/login.css";
 import { useNavigate } from "react-router-dom";
-import SamambaiaImage from '../Imgs/samambaia.jpg';
-import { ThemeProvider } from '@mui/material/styles';
-import theme from '../Utils/theme';
-
+import CarouselImage from '../Imgs/fundo-login.jpg';
 
 export default function Home({planta, setUpdatePage}) {
 
@@ -45,13 +42,12 @@ export default function Home({planta, setUpdatePage}) {
         setSelectedCategory(cat);
       };
       const imagensCarrossel = [
-        { src: SamambaiaImage, alt: "Planta 1" },
-        { src: SamambaiaImage, alt: "Planta 2" },
-        { src: SamambaiaImage, alt: "Planta 3" },
+        { src: CarouselImage, alt: "Planta 1" },
+        { src: CarouselImage, alt: "Planta 2" },
+        { src: CarouselImage, alt: "Planta 3" },
       ];
 
       return (
-      <ThemeProvider theme={theme}>
         <Box sx={{ width: "100%"}} >
           <AppBar position="fixed" open={open}>
               <Header open={open}
@@ -71,7 +67,7 @@ export default function Home({planta, setUpdatePage}) {
 
             <Container sx={{ textAlign: 'center', mt: 4 }}>
               {/* Lista das Plantas*/}
-              <Typography variant="h5" gutterBottom>
+              <Typography variant="h4" gutterBottom>
                 Nossas Plantas
               </Typography>
               <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, mb: 4 }}>
@@ -89,13 +85,12 @@ export default function Home({planta, setUpdatePage}) {
                 <CardList
                   items={plantasList}
                   showDeleteButton={false} 
-                  
                   clickCard={handleNavigate} // futuro direcionamento pra pagina planta
+                  cardsPerRow={4} 
                 />
             </Container>
 
         </Box>
-      </ThemeProvider>
   );
   }
   

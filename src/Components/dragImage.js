@@ -44,7 +44,7 @@ const DragDropUpload = ({handleUpload, previewImage}) => {
   return (
     <Box
     sx={{
-      border: "2px dashed #1976d2",
+      border: "2px dashed #4CAF50",
       borderRadius: "8px",
       padding: "20px",
       textAlign: "center",

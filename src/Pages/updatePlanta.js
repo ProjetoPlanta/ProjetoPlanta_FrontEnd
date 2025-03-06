@@ -27,7 +27,7 @@ export default function UpdatePlanta({planta, setUpdatePage}) {
     return (
     <Box>
           <Typography  sx={{ marginBottom: 2 }}>
-           atualize uma Planta
+           Atualizar Planta
           </Typography>
           <Box mb={5}>
             <DragImage

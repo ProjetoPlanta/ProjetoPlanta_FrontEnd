@@ -17,6 +17,10 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Button from '@mui/material/Button';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import StoreIcon from '@mui/icons-material/Store';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import YardIcon from '@mui/icons-material/Yard';
 import MailIcon from '@mui/icons-material/Mail';
 import { BrowserRouter as Router } from "react-router-dom";
 import CadastroPlanta from './cadastroPlanta'
@@ -180,7 +184,10 @@ export default function Admin() {
                         },
                   ]}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {text === "Cadastro" && <LibraryAddIcon />}
+                {text === "Plantas" && <YardIcon />}
+                {text === "Pedidos" && <StorefrontIcon />}
+                {text === "Estoque" && <StoreIcon />}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}

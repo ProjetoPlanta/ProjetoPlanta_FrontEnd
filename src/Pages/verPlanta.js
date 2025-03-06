@@ -27,7 +27,7 @@ export default function VerPlanta() {
       return (
         <>
         <Header/>
-        <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={8} padding={5}>
+        <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={8} sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}>
         {/* Primeira Parte */}
         <Box flex={1}>
           <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="700px" mb={2} borderRadius={2} boxShadow={1} />
@@ -104,17 +104,17 @@ export default function VerPlanta() {
                     <Typography variant="h4" gutterBottom>{planta?.nomePopular}</Typography>    
                     <Typography variant="h5" color="textSecondary" gutterBottom>R$ {planta.preco}</Typography>
                     <TextField label="Quantidade" type="number" fullWidth variant="outlined" sx={{ mb: 2 }} />
-                    <Button variant="contained" sx={{ backgroundColor: "black", color: "white", mb:2 }} fullWidth >Reservar</Button>
+                    <Button variant="contained" sx={{ mb:2 }} fullWidth >Reservar</Button>
                     <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
                     {[
                         { label: "Porte", value: planta?.porte },
                         { label: "Categoria", value: planta?.categoriaGeral },
                         { label: "Ambiente", value: planta?.ambiente },
-                        { label: "PetFrendly", value: planta.toxidade ? 'Não' : 'Sim' }
+                        { label: "Pet Friendly", value: planta.toxidade ? 'Não' : 'Sim' }
                     ].map((item, index) => (
-                        <Box key={index} textAlign="center" width="23%">
-                        <Typography variant="caption" display="block">{item.label}</Typography>
-                        <Typography variant="body1" fontWeight="bold">
+                        <Box key={index} textAlign="left" justifyContent="space-between" width="23%">
+                        <Typography variant="h8" display="block">{item.label}</Typography>
+                        <Typography variant="h5" fontWeight="bold">
                             {item.value}
                         </Typography>
                         </Box>

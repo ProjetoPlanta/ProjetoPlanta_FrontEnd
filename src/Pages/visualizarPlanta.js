@@ -76,15 +76,16 @@ return (
     <Box>
         { !isUpdate ? (
             <>
-          <Typography  sx={{ marginBottom: 2 }}>
-           Visualizar Plantas
+          <Typography variant='h5' sx={{fontFamily: "Qeilab",  marginBottom: 2 }}>
+          Todas as Plantas
           </Typography>
-          <Divider />
+          <Divider sx={{ marginBottom: 2 }} />
           <CardList
             items={plantas}
             showDeleteButton={true}
             handleDeleteButton={handleOpenModal}
             clickCard={handleUpdatePlanta}
+            cardsPerRow={5} 
           />
 
            <Snackbar open={open} autoHideDuration={4000} onClose={() => setOpen(false)}   anchorOrigin={{ vertical: "top", horizontal: "center" }}>
