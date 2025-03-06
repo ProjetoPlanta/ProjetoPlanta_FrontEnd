@@ -10,6 +10,8 @@ import { useState, useEffect } from "react";
 import "../Styles/login.css";
 import { useNavigate } from "react-router-dom";
 import SamambaiaImage from '../Imgs/samambaia.jpg';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from '../Utils/theme';
 
 
 export default function Home({planta, setUpdatePage}) {
@@ -49,6 +51,7 @@ export default function Home({planta, setUpdatePage}) {
       ];
 
       return (
+      <ThemeProvider theme={theme}>
         <Box sx={{ width: "100%"}} >
           <AppBar position="fixed" open={open}>
               <Header open={open}
@@ -60,7 +63,7 @@ export default function Home({planta, setUpdatePage}) {
                 <Carousel autoPlay animation="fade" navButtonsAlwaysVisible sx={{ width: '100%' }}>
                   {imagensCarrossel.map((item, index) => (
                     <Box key={index} sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                      <img src={item.src} alt={item.alt} style={{ width: "100%", maxHeight: "400px" }} />
+                      <img src={item.src} alt={item.alt} style={{ width: "100%", maxHeight: "500px" }} />
                     </Box>
                   ))}
                 </Carousel>
@@ -92,6 +95,7 @@ export default function Home({planta, setUpdatePage}) {
             </Container>
 
         </Box>
+      </ThemeProvider>
   );
   }
   
