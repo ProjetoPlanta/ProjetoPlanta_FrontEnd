@@ -26,9 +26,13 @@ const cartSlice = createSlice({
       state.plantas = state.plantas.filter(p => p.plantaId !== id)
       state.plantasDetalhadas = state.plantasDetalhadas.filter(p => p.id !==id);
     },
-   
+    limpaCarrinho:  (state) =>{
+      state.plantas = []
+      state.data = new Date().toISOString()
+      state.plantasDetalhadas = []
+    },
   }
 });
 
-export const { addPlanta, removePlanta, } = cartSlice.actions;
+export const { addPlanta, removePlanta, limpaCarrinho} = cartSlice.actions;
 export default cartSlice.reducer;

@@ -17,7 +17,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { useAuth } from '../Hooks/useAuth';
 import { useCart } from '../Hooks/useCart';
 import PedidoService from "../Services/pedidosService";
-import { removePlanta } from '../Store/cartSlice';
+import { removePlanta, limpaCarrinho } from '../Store/cartSlice';
 import Modal from './modal';
 import TextField from '@mui/material/TextField';
 import Snackbar from '@mui/material/Snackbar';
@@ -92,13 +92,13 @@ export default function ButtonAppBar({ open, handleDrawerOpen, isAdmin }) {
 
     try {
       const response = await PedidoService.cadastrarPedido(data);
-
-      if (!response.ok) {
+      
+      if (response.status !== 200) {
         throw new Error("Erro ao reservar pedido!");
       }
 
       setSnackbar({ open: true, message: "Pedido reservado com sucesso!", severity: "success" });
-      dispatch({ type: 'cart/clearCart' }); // Simula a limpeza do carrinho
+      dispatch(limpaCarrinho()); // Simula a limpeza do carrinho
     } catch (error) {
       setSnackbar({ open: true, message: error.message, severity: "error" });
     }
