@@ -2,12 +2,16 @@ import React from "react";
 import { Box, Card, CardContent, Typography, IconButton, Link } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const CardList = ({ items, showDeleteButton, handleDeleteButton, clickCard, cardsPerRow = 4 }) => {
+const CardList = ({ items, custom, showDeleteButton, handleDeleteButton, clickCard, cardsPerRow = 4 }) => {
   return (
     <Box mt={4} display="grid" gridTemplateColumns={`repeat(${cardsPerRow}, 1fr)`} gap={2}>
       {items.map((item, index) => (
         <Card key={index} sx={{ padding: 2, display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
           <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+            {custom ? (
+              custom(item)
+            ) : (
+              <>
             <Box display="flex" justifyContent="center">
               <img
                 src={`data:image/png;base64,${item?.imagem}`}
@@ -36,6 +40,8 @@ const CardList = ({ items, showDeleteButton, handleDeleteButton, clickCard, card
                 <DeleteIcon sx={{ fontSize: 32 }} />
               </IconButton>
             )}
+          </>
+          )}
           </CardContent>
         </Card>
       ))}

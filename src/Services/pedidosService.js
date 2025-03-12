@@ -6,7 +6,7 @@ const PedidoService = {
   cadastrarPedido: async (pedido) => {
     try {
       const response = await api.post(API_URL, pedido);
-      return response.status;
+      return response;
     } catch (error) {
       return error
     }
@@ -14,7 +14,7 @@ const PedidoService = {
 
   updatePedido: async (id,status) => {
     try {
-      const response = await api.patch(`${API_URL}/${id}/status`, status);
+      const response = await api.patch(`${API_URL}/${id}/status `, status);
       return response.status;
     } catch (error) {
       return {error: error, message:"Erro ao atualizar Pedido"}

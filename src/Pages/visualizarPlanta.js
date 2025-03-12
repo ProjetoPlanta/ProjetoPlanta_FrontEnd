@@ -98,6 +98,8 @@ return (
                 title="Confirmação de exclusão"
                 message="Tem certeza que deseja excluir esse item?"
                 onClose={handleCloseModal} 
+                isDelete={true}
+                textButton="Deletar"
                 onConfirm={handleDeletePlantas} 
             />
         </>

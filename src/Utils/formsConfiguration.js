@@ -30,18 +30,10 @@ const entityForms = {
       },
       {
         formFields:[
-          {id:'ambiente',name:'ambiente', type:'select', value:'', required: true, 
+          {id:'tipoAmbiente',name:'ambiente', type:'select', value:'', required: true, 
             options:[{value:'interno',name:'Interno'},{value:'externo',name:'Externo'}]
           },
         
-          {
-            id:'categoriaGeral', 
-            name:'Categoria Geral', 
-            type:'select', value :"" , required: true,
-            options:[{value:'Briofita',name:'Briofita'},{value:'pteridofita',name:'Pteridofita'},
-              {value:'Gimnosperma',name:'Gimnosperma'},{value:'Angiosperma',name:'Angiosperma'}
-            ]
-          },
          
         ]
       },
@@ -55,8 +47,10 @@ const entityForms = {
               {value:'outono',name:'Outono'},{value:'primavera',name:'Primavera'}
             ]
           },
+          
           {id: 'preco', name:'Preço', type:'number', value: "", required: true},
-          {id:'necessidadePoda', name:'Necessidade de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
+          {id: 'estoque', name:'Estoque', type:'number', value: "", required: true},
+          {id:'frequenciaPoda', name:'Frequência de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
             {value:'alta',name:'Alta'},
           ]},
         ]
@@ -80,8 +74,7 @@ const entityForms = {
       },
       {
         formFields:[
-          {id:'toxicidade', name:'Pet Friendly', type:'checkbox', value: false,},
-          {id:'medicinal', name:'Medicinal', type:'checkbox', value: false},
+          {id:'petFriendly', name:'Pet Friendly', type:'checkbox', value: false,},
           {id:'atraiAbelha', name:'Atrai Abelha', type:'checkbox', value:false},
           
         ]
