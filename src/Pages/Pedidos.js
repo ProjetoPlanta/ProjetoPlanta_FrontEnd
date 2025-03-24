@@ -18,7 +18,7 @@ const Pedidos = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const atualizarStatus = async (id, novoStatus) => {
-    console.log("dqwdqwdqw",id,novoStatus)
+  
     setPedidos((prevPedidos) =>
       prevPedidos.map((pedido) =>
         pedido.id === id ? { ...pedido, status: novoStatus } : pedido
@@ -30,7 +30,10 @@ const Pedidos = () => {
 
   const handlePlanta = async () => {
     const response = await PedidoService.getAllPedidos();
-    setPedidos(response);
+    if(!response.error){
+      setPedidos(response);
+    }
+    
   };
 
   useEffect(() => {
@@ -40,7 +43,7 @@ const Pedidos = () => {
   return (
     <div>
       <Typography variant='h5' sx={{fontFamily: "Qeilab",  marginBottom: 2 }}>Pedidos</Typography>
-      {pedidos.filter((p) => p.status === "pendente").map((pedido, indexPedido) => {
+      {pedidos && pedidos?.filter((p) => p.status === "pendente").map((pedido, indexPedido) => {
         const totalPedido = pedido.plantas.reduce(
           (acc, planta, index) => acc + planta.quantidade * pedido.plantasDetalhadas[index].preco,
           0
@@ -64,7 +67,7 @@ const Pedidos = () => {
               {detalhes.nomePopular}
             </Typography>
             <Typography variant="body1" sx={{ fontStyle: 'italic', color: 'gray' }}>
-              Quantidade: {planta.quantidade}
+              Quantidade: {planta.quantidade} - Em Estoque: {detalhes.estoque} 
             </Typography>            
             <Typography variant="body1" sx={{ fontWeight: 'bold', color: 'green' }}>
               Valor: R${valorTotal.toFixed(2)}
@@ -90,7 +93,7 @@ const Pedidos = () => {
       <Button
         variant="contained"
         color="error"
-        onClick={() => atualizarStatus(pedido.id, "nao efetuado")}
+        onClick={() => atualizarStatus(pedido.id, "recusado")}
         sx={{ flex: 1 }}
       >
         Deletar
@@ -106,7 +109,7 @@ const Pedidos = () => {
           <Typography variant="h6">Histórico</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          {pedidos.filter((p) => p.status !== "pendente").map((pedido, indexPedido) => {
+          {pedidos?.filter((p) => p.status !== "pendente").map((pedido, indexPedido) => {
             const totalPedido = pedido.plantas.reduce(
               (acc, planta, index) => acc + planta.quantidade * pedido.plantasDetalhadas[index].preco,
               0

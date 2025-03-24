@@ -30,6 +30,17 @@ const PedidoService = {
     }
   },
 
+  getByParameter: async (searchType, searchValue) =>{
+    const api_URL_PARAMETERS  = `${API_URL}/${searchType}/${searchValue} ` 
+
+    try {
+      const response = await api.get(api_URL_PARAMETERS);
+      return response.data;
+    } catch (error) {
+      return {error: error, message:"Erro ao buscar Pedido"}
+    }
+  }
+
 
 };
 
