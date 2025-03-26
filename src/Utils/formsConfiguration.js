@@ -30,7 +30,7 @@ const entityForms = {
       },
       {
         formFields:[
-          {id:'tipoAmbiente',name:'ambiente', type:'select', value:'', required: true, 
+          {id:'ambiente',name:'Ambiente', type:'select', value:'', required: true, 
             options:[{value:'interno',name:'Interno'},{value:'externo',name:'Externo'}]
           },
         

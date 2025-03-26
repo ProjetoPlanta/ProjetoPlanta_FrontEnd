@@ -94,7 +94,6 @@ export default function SearchMenu() {
                 {pedido.plantas.map((planta,index) =>{
                 
                 const plantaDetalhe = pedido?.plantasDetalhadas[index];
-                console.log("dqdwqdwqdqw",plantaDetalhe)
                 return plantaDetalhe ?  (
                   <MenuItem key={planta.plantaId}>
                   <Box display='flex' alignItems='center' justifyContent='space-between' width='100%'>

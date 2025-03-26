@@ -36,14 +36,16 @@ export default function Header({ open, handleDrawerOpen, isAdmin }) {
       )}
 
       <img src={require('../Imgs/logo-escuro.jpg')} alt='logo' height='70px' loading='lazy' />
-
+      
       <Button sx={{ color: 'white' }} onClick={() => navigate('/')}>Home</Button>
+      <Button sx={{ color: 'white' }} onClick={() => navigate('/plantas')}>Plantas</Button>
+      <Button sx={{ color: 'white' }} onClick={() => navigate('/pedidos')}>Pedidos</Button>
       {isAuthenticated && (
         <Button sx={{ color: 'white' }} onClick={() => navigate('/admin')}>Admin</Button>
       )}
       
       <div style={{ marginLeft: 'auto', display: 'flex', gap: '50px' }}>
-        <SearchMenu />
+        {/* <SearchMenu /> */}
         <CartMenu />
       </div>
 
