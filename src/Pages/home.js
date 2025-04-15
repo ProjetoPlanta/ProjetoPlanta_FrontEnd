@@ -18,7 +18,7 @@ export default function Home({planta, setUpdatePage}) {
       const [selectedCategory, setSelectedCategory] = useState('Todas');
        const navigate = useNavigate();
       // Categorias exemplo só
-      const categories = ['Todas', 'Categoria 1', 'Categoria 2', 'Categoria 3'];
+      const categories = ['Todas', 'Flores', 'Decorativas', 'Funcionais'];
 
       // Carrega plantas
       const handlePlantas = async () => {

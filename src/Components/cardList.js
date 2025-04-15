@@ -17,56 +17,106 @@ const CardList = ({
     <Box mt={4} display="grid" gridTemplateColumns={`repeat(${cardsPerRow}, 1fr)`} gap={2} width={containerWidth}>
       {items.map((item, index) => (
         <Card 
-          key={index} 
+        key={index} 
+        sx={{ 
+          padding: 2, 
+          height: 500, // Altura fixa
+          display: "flex", 
+          flexDirection: "column", 
+          justifyContent: "space-between", 
+          alignItems: "center", 
+          textAlign: "center"
+        }}
+      >
+        <CardContent 
           sx={{ 
-            padding: 2, 
             display: "flex", 
             flexDirection: "column", 
             alignItems: "center", 
-            gap: 2 
+            justifyContent: "space-between", 
+            gap: 1, 
+            height: "100%", 
+            width: "100%",
+            padding: 0
           }}
         >
-          <CardContent sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
-            {custom ? (
-              custom(item)
-            ) : (
-              <>
-                <Box display="flex" justifyContent="center">
-                  <img
-                    src={`data:image/png;base64,${item?.imagem}`}
-                    alt="logo"
-                    height="100px"
-                    width="100px"
-                    loading="lazy"
-                  />
-                </Box>
-                <Typography variant="h6" component="div" sx={{ textAlign: "center" }}>
-                  <Link href="#" underline="hover" onClick={() => clickCard(item)}>
-                    {item.nome}
-                  </Link>
-                </Typography>
-
-                <Typography variant="body2" color="text.secondary" sx={{ textAlign: "center", flexGrow: 1 }}>
-                  {item.descricao}
-                </Typography>
-
-                <Typography fontWeight="bold" variant="body1" color="text.secondary" sx={{ textAlign: "center", flexGrow: 1 }}>
-                  R$ {item.preco}
-                </Typography>
-
-                {qrCode && (
-                  <Button variant="contained" onClick={() => handleGenerateQRCode(item)}>Gerar QR Code</Button>
-                )}
-
-                {showDeleteButton && (
-                  <IconButton color="error" onClick={() => handleDeleteButton(item)}>
-                    <DeleteIcon sx={{ fontSize: 32 }} />
-                  </IconButton>
-                )}
-              </>
-            )}
-          </CardContent>
-        </Card>
+          {/* Imagem */}
+          <Box 
+            component="img"
+            src={`data:image/png;base64,${item?.imagem}`}
+            alt={item.nome}
+            sx={{ 
+              width: 120, 
+              height: 120, 
+              objectFit: "cover", 
+              borderRadius: 2, 
+              cursor: 'pointer' 
+            }}
+            onClick={() => clickCard(item)}
+          />
+      
+          {/* Nome */}
+          <Typography 
+            variant="h6" 
+            component="div" 
+            sx={{ 
+              fontWeight: "bold", 
+              mt: 1,
+              minHeight: 56, // Ajusta para caber 2 linhas sem cortar
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              px: 1
+            }}
+          >
+            <Link 
+              href="#" 
+              underline="hover" 
+              onClick={() => clickCard(item)}
+              sx={{ color: "inherit", textDecoration: "none" }}
+            >
+              {item.nome}
+            </Link>
+          </Typography>
+      
+          {/* Descrição */}
+          <Typography 
+            variant="body2" 
+            color="text.secondary" 
+            sx={{ 
+              flexGrow: 1, 
+              overflow: "auto", 
+              px: 1,
+              mb: 1
+            }}
+          >
+            {item.descricao}
+          </Typography>
+      
+          {/* Preço */}
+          <Typography 
+            variant="body1" 
+            fontWeight="bold"
+          >
+            R$ {item.preco}
+          </Typography>
+      
+          {/* Ações */}
+          {qrCode && (
+            <Button variant="contained" size="small" onClick={() => handleGenerateQRCode(item)}>
+              Gerar QR Code
+            </Button>
+          )}
+          {showDeleteButton && (
+            <IconButton color="error" onClick={() => handleDeleteButton(item)}>
+              <DeleteIcon sx={{ fontSize: 24 }} />
+            </IconButton>
+          )}
+        </CardContent>
+      </Card>
+      
+      
       ))}
     </Box>
   );

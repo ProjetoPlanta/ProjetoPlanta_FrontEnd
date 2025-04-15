@@ -35,15 +35,15 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
   };
 
   const formCadastroPlanta = [
-    { id: 'ambiente', name: 'Ambiente', options: ['interno', 'externo'] },
-    { id: 'epocaFloracao', name: 'Época de Floração', options: ['inverno', 'verão', 'outono', 'primavera'] },
-    { id: 'frequenciaPoda', name: 'Frequência de Poda', options: ['baixa', 'media', 'alta'] },
-    { id: 'necessidadeAgua', name: 'Necessidade de Água', options: ['baixa', 'media', 'alta'] },
-    { id: 'porte', name: 'Porte', options: ['pequeno', 'media', 'grande'] },
-    { id: 'necessidadeLuz', name: 'Necessidade de Luz', options: ['baixa', 'media', 'alta'] },
-    { id: 'umidadeSolo', name: 'Umidade do Solo', options: ['baixa', 'media', 'alta'] },
-    { id: 'petFriendly', name: 'Pet Friendly', type: 'checkbox' },
-    { id: 'atraiAbelha', name: 'Atrai Abelha', type: 'checkbox' }
+    { id: 'ambiente', name: 'Ambiente', options: ['Interno 🏠', 'Extern 🌱'] },
+    { id: 'epocaFloracao', name: 'Época de Floração', options: ['Inverno ❄️', 'Verão ☀️', 'Outono 🍂', 'Primavera 🌷'] },
+    { id: 'frequenciaPoda', name: 'Frequência de Poda', options: ['Baixa ✂️', 'Média ✂️✂️', 'Alta ✂️✂️✂️'] },
+    { id: 'necessidadeAgua', name: 'Necessidade de Água', options: ['Baixa 💧', 'Média 💦', 'Alta 🌊'] },
+    { id: 'porte', name: 'Porte', options: ['Pequeno 🌱', 'Médio 🌿', 'Grande 🌳'] },
+    { id: 'necessidadeLuz', name: 'Necessidade de Luz', options: ['Baixa 🔅', 'Media 🔆', 'Alta ☀️'] },
+    { id: 'umidadeSolo', name: 'Umidade do Solo', options: ['Baixa 💧', 'Média 💦', 'Alta 🌊'] },
+    { id: 'petFriendly', name: 'Pet Friendly 🐶🐱', type: 'checkbox' },
+    { id: 'atraiAbelha', name: 'Atrai Abelha 🐝', type: 'checkbox' }
   ];
 
   return (

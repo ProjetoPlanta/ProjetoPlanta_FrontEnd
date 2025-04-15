@@ -31,7 +31,7 @@ const entityForms = {
       {
         formFields:[
           {id:'ambiente',name:'Ambiente', type:'select', value:'', required: true, 
-            options:[{value:'interno',name:'Interno'},{value:'externo',name:'Externo'}]
+            options:[{value:'Interno',name:'Interno'},{value:'Externo',name:'Externo'}]
           },
         
          
@@ -43,33 +43,33 @@ const entityForms = {
          
          
           {id:'epocaFloracao', name:'Epoca de Floração', type:'select', value: "", required: true,
-            options:[{value:'inverno',name:'Inverno'},{value:'verão',name:'verão'},
-              {value:'outono',name:'Outono'},{value:'primavera',name:'Primavera'}
+            options:[{value:'Inverno',name:'Inverno'},{value:'Verão',name:'Verão'},
+              {value:'Outono',name:'Outono'},{value:'Primavera',name:'Primavera'}
             ]
           },
           
           {id: 'preco', name:'Preço', type:'number', value: "", required: true},
           {id: 'estoque', name:'Estoque', type:'number', value: "", required: true},
-          {id:'frequenciaPoda', name:'Frequência de Poda', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
-            {value:'alta',name:'Alta'},
+          {id:'frequenciaPoda', name:'Frequência de Poda', type:'select', value: "", required: true,  options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
+            {value:'Alta',name:'Alta'},
           ]},
         ]
       },
       {
         formFields:[
           {id:'necessidadeAgua', name:'Necessidade de Agua', type:'select', value: "", required: true,
-            options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
-              {value:'alta',name:'Alta'},
+            options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
+              {value:'Alta',name:'Alta'},
             ]
           },
-          {id:'porte', name:'Porte', type:'select', value: "", required: true, options:[{value:'pequeno',name:'Pequeno'},{value:'media',name:'Média'},
+          {id:'porte', name:'Porte', type:'select', value: "", required: true, options:[{value:'pequeno',name:'Pequeno'},{value:'Média',name:'Média'},
             {value:'grande',name:'Grande'}]},
-          {id:'necessidadeLuz', name:'Necessidade de Luz', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
-            {value:'alta',name:'Alta'},
+          {id:'necessidadeLuz', name:'Necessidade de Luz', type:'select', value: "", required: true,  options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
+            {value:'Alta',name:'Alta'},
           ]},
           
-          {id:'umidadeSolo', name:'Umidade de Solo', type:'select', value: "", required: true,  options:[{value:'baixa',name:'Baixa'},{value:'media',name:'Média'},
-            {value:'alta',name:'Alta'}]}
+          {id:'umidadeSolo', name:'Umidade de Solo', type:'select', value: "", required: true,  options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
+            {value:'Alta',name:'Alta'}]}
         ]
       },
       {
