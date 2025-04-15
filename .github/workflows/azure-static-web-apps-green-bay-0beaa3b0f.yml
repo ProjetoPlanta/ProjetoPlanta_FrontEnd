@@ -26,6 +26,8 @@ jobs:
         run: npm install @actions/core@1.6.0 @actions/http-client
       - name: Install dependencies with force
         run: npm install --force
+      - name: Set CI environment variable to false
+        run: echo "CI=false" >> $GITHUB_ENV
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
