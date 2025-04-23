@@ -29,32 +29,34 @@ export default function Plantas() {
     navigate(`/ver-planta/${data.id}`);
   }
 
-  
-
   return (
     <>
-     <Box sx={{ display: 'flex', width: "100%" }}>
+     {/*<Box sx={{ display: 'flex', width: "100%" }}>*/}
        <AppBar position="fixed">
         <Header open={open} />
        </AppBar>
-     
-       <Box sx={{ display: 'flex' }}>
-       <Filter marginTop={8} plantasList={plantasList} setFilteredPlantas={setFilteredPlantas} />
-         <Box  sx={{ marginLeft: 5, paddingTop: 2, marginTop: 10, marginRight: 5}}>
+       <Toolbar />
+
+      <Container maxWidth="xl" sx={{ mt: 4 }}>     
+       <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' },gap: 4,}}>
+
+       <Filter plantasList={plantasList} setFilteredPlantas={setFilteredPlantas} />
+
+         {/*<Box  sx={{ marginLeft: 5, paddingTop: 2, marginTop: 10, marginRight: 5}}>*/}
+         <Box sx={{ flexGrow: 1 }}>
            <Typography variant="h5" gutterBottom>
             Todas as Plantas
            </Typography>
-           <Divider sx={{ marginBottom: 2 }} /> 
+           <Divider sx={{mb: 2}} /> 
           <CardList
                  items={filteredPlantas}
                   showDeleteButton={false} 
                   clickCard={handleNavigate} 
                   cardsPerRow={5}  
-            />
-
-          </Box>
-      </Box>
-     </Box> 
-    </>
-  );
-}
+                  />
+                  </Box>
+                </Box>
+              </Container>
+            </>
+          );
+        }

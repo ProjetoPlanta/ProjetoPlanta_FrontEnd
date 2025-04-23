@@ -3,13 +3,20 @@ import Box from '@mui/material/Box';
 import Header from '../Components/header'
 import EntityForm from '../Components/entityForm'
 import { AppBar, Toolbar, Typography, Container, Button } from '@mui/material';
-import Carousel from 'react-material-ui-carousel';
 import CardList from '../Components/cardList';
 import PlantaService from "../Services/plantasService"; 
 import { useState, useEffect } from "react";
 import "../Styles/login.css";
 import { useNavigate } from "react-router-dom";
-import CarouselImage from '../Imgs/fundo-login.jpg';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+import CarouselImg1 from '../Imgs/carrossel-bege.png';
+import CarouselImg2 from '../Imgs/carrossel-buque.png';
+import CarouselImg3 from '../Imgs/carrossel-cacto.png';
+import CarouselImg4 from '../Imgs/carrossel-rosa.png';
+
 
 export default function Home({planta, setUpdatePage}) {
 
@@ -42,10 +49,21 @@ export default function Home({planta, setUpdatePage}) {
         setSelectedCategory(cat);
       };
       const imagensCarrossel = [
-        { src: CarouselImage, alt: "Planta 1" },
-        { src: CarouselImage, alt: "Planta 2" },
-        { src: CarouselImage, alt: "Planta 3" },
+        { src: CarouselImg2, alt: "Planta 2" },
+        { src: CarouselImg3, alt: "Planta 3" },
+        { src: CarouselImg4, alt: "Planta 4" },
+        { src: CarouselImg1, alt: "Planta 1" }
       ];
+      const sliderSettings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+      };
 
       return (
         <Box sx={{ width: "100%"}} >
@@ -56,14 +74,23 @@ export default function Home({planta, setUpdatePage}) {
           <Toolbar/>
 
           <Box sx={{ width: '100%' }}>
-                <Carousel autoPlay animation="fade" navButtonsAlwaysVisible sx={{ width: '100%' }}>
-                  {imagensCarrossel.map((item, index) => (
-                    <Box key={index} sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                      <img src={item.src} alt={item.alt} style={{ width: "100%", maxHeight: "500px" }} />
-                    </Box>
-                  ))}
-                </Carousel>
-            </Box>
+            <Slider {...sliderSettings}>
+            {imagensCarrossel.map((item, index) => (
+              <Box key={index} sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  style={{
+                    width: "100%",
+                    height: "500px",
+                    objectFit: "cover",
+                  }}
+                  loading="lazy"
+                />
+          </Box>
+          ))}
+          </Slider>
+        </Box>
 
             <Container sx={{ textAlign: 'center', mt: 4 }}>
               {/* Lista das Plantas*/}

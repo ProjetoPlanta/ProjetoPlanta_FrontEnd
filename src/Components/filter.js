@@ -47,14 +47,23 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
   ];
 
   return (
-    <Box sx={{ width: 650, marginTop: marginTop, backgroundColor: 'white', borderRadius: 2, boxShadow: 3, marginLeft: marginLeft }}>
-      <Typography variant="h5" gutterBottom sx={{ marginBottom: 2, marginLeft: 3, marginTop: 5 }}>
-        Filtros
-      </Typography>
-      <Divider sx={{ marginBottom: 2 }} />
+      <Box
+            sx={{
+              width: { xs: '100%', md: '250px' }, // Responsivo
+              backgroundColor: 'white',
+              borderRadius: 2,
+              boxShadow: 3,
+              p: 2,
+              flexShrink: 0,
+            }}
+        >      
+          <Typography variant="h5" gutterBottom sx={{ marginBottom: 2, marginLeft: 3, marginTop: 5 }}>
+            Filtros
+          </Typography>
+      <Divider sx={{ mb: 2 }} />
       <List>
         {formCadastroPlanta?.map(field => (
-          <ListItem key={field.id}>
+          <ListItem key={field.id} disablePadding sx={{ mb: 2 }}>
             {field.type === 'checkbox' ? (
               <FormControlLabel
                 control={<Checkbox onChange={e => handleFilterChange(field.id, e.target.checked)} />}
@@ -62,9 +71,12 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
               />
             ) : (
               <FormControl fullWidth>
-                <InputLabel>{field.name}</InputLabel>
+                <InputLabel id={`label-${field.id}`}>{field.name}</InputLabel>
                 <Select
+                  labelId={`label-${field.id}`}
+                  id={field.id}
                   value={filters[field.id] || ''}
+                  label={field.name}
                   onChange={e => handleFilterChange(field.id, e.target.value)}
                 >
                   <MenuItem value="">Todos</MenuItem>
@@ -76,7 +88,7 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
             )}
           </ListItem>
         ))}
-        <ListItem>
+        <ListItem sx={{ flexDirection: 'column', alignItems: 'stretch', mb: 2 }}>
           <Typography gutterBottom>Preço Máximo</Typography>
           <Slider
             value={filters.preco || maxPrice}
@@ -87,7 +99,7 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
             valueLabelDisplay="auto"
           />
         </ListItem>
-        <ListItem>
+        <ListItem sx={{ justifyContent: 'center' }}>
           <Button variant="contained" color="secondary" onClick={clearFilters} fullWidth>
             Limpar Filtros
           </Button>
