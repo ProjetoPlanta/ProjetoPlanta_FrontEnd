@@ -46,7 +46,7 @@ export default function Header({ open, handleDrawerOpen, isAdmin }) {
       
       <div style={{ marginLeft: 'auto', display: 'flex', gap: '50px' }}>
         {/* <SearchMenu /> */}
-        <CartMenu />
+        {!isAdmin && <CartMenu />}
       </div>
 
       {isAdmin && (

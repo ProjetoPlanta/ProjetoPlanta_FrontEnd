@@ -35,13 +35,32 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
   };
 
   const formCadastroPlanta = [
-    { id: 'ambiente', name: 'Ambiente', options: ['Interno 🏠', 'Extern 🌱'] },
-    { id: 'epocaFloracao', name: 'Época de Floração', options: ['Inverno ❄️', 'Verão ☀️', 'Outono 🍂', 'Primavera 🌷'] },
-    { id: 'frequenciaPoda', name: 'Frequência de Poda', options: ['Baixa ✂️', 'Média ✂️✂️', 'Alta ✂️✂️✂️'] },
-    { id: 'necessidadeAgua', name: 'Necessidade de Água', options: ['Baixa 💧', 'Média 💦', 'Alta 🌊'] },
-    { id: 'porte', name: 'Porte', options: ['Pequeno 🌱', 'Médio 🌿', 'Grande 🌳'] },
-    { id: 'necessidadeLuz', name: 'Necessidade de Luz', options: ['Baixa 🔅', 'Media 🔆', 'Alta ☀️'] },
-    { id: 'umidadeSolo', name: 'Umidade do Solo', options: ['Baixa 💧', 'Média 💦', 'Alta 🌊'] },
+    { id: 'ambiente', name: 'Ambiente', options: [{label: 'Interno 🏠', value: 'Interno'},{label:'Externo 🌱', value: 'Externo'}] },
+    { id: 'epocaFloracao', name: 'Época de Floração', options: [
+      { label: 'Inverno ❄️', value: 'Inverno' },
+      { label: 'Verão ☀️', value: 'Verão' },
+      { label: 'Outono 🍂', value: 'Outono' },
+      { label: 'Primavera 🌷', value: 'Primavera' }]},
+    { id: 'frequenciaPoda', name: 'Frequência de Poda', options: [
+      { label: 'Baixa ✂️', value: 'Baixa' },
+      { label: 'Média ✂️✂️', value: 'Média' },
+      { label: 'Alta ✂️✂️✂️', value: 'Alta' }]},
+    { id: 'necessidadeAgua', name: 'Necessidade de Água', options: [
+      { label: 'Baixa 💧', value: 'Baixa' },
+      { label: 'Média 💦', value: 'Média' },
+      { label: 'Alta 🌊', value: 'Alta' }] },
+    { id: 'porte', name: 'Porte', options: [
+      { label: 'Pequeno 🌱', value: 'Pequeno' },
+      { label: 'Médio 🌿', value: 'Médio' },
+      { label: 'Grande 🌳', value: 'Grande' }]},
+    { id: 'necessidadeLuz', name: 'Necessidade de Luz', options: [
+      { label: 'Baixa 🔅', value: 'Baixa' },
+      { label: 'Media 🔆', value: 'Media' },
+      { label: 'Alta ☀️', value: 'Alta' }] },
+    { id: 'umidadeSolo', name: 'Umidade do Solo', options: [
+      { label: 'Baixa 💧', value: 'Baixa' },
+      { label: 'Média 💦', value: 'Média' },
+      { label: 'Alta 🌊', value: 'Alta' }] },
     { id: 'petFriendly', name: 'Pet Friendly 🐶🐱', type: 'checkbox' },
     { id: 'atraiAbelha', name: 'Atrai Abelha 🐝', type: 'checkbox' }
   ];
@@ -81,7 +100,7 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
                 >
                   <MenuItem value="">Todos</MenuItem>
                   {field?.options?.map(option => (
-                    <MenuItem key={option} value={option}>{option}</MenuItem>
+                    <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
                   ))}
                 </Select>
               </FormControl>
