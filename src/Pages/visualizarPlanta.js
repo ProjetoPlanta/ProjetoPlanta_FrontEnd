@@ -100,18 +100,30 @@ return (
                     <Typography variant='h5' sx={{fontFamily: "Qeilab",  marginBottom: 2 }}>
                     Todas as Plantas
                     </Typography>
-                    <Box sx={{ display: 'flex' }}>
                     <Divider sx={{ marginBottom: 2 }} />
-                    <CardList
-                        items={filteredPlantas}
-                        showDeleteButton={true}
-                        handleDeleteButton={handleOpenModal}
-                        clickCard={handleUpdatePlanta}
-                        cardsPerRow={5} 
-                        qrCode={true}
-                        handleGenerateQRCode={handleGenerateQRCode}
-                    />
 
+<Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start' }}>
+  <Box sx={{ flex: 1 }}>
+    <CardList
+      items={filteredPlantas}
+      showDeleteButton={true}
+      handleDeleteButton={handleOpenModal}
+      clickCard={handleUpdatePlanta}
+      cardsPerRow={4} // Agora sim, só 4 por linha
+      qrCode={true}
+      handleGenerateQRCode={handleGenerateQRCode}
+    />
+  </Box>
+
+  <Box sx={{ width: 280 }}>
+    <Filter
+      marginTop={0}
+      marginLeft={0}
+      plantasList={plantas}
+      setFilteredPlantas={setFilteredPlantas}
+    />
+  </Box>
+</Box>
                     <Snackbar open={open} autoHideDuration={4000} onClose={() => setOpen(false)}   anchorOrigin={{ vertical: "top", horizontal: "center" }}>
                         <Alert onClose={() => setOpen(false)} severity="success" sx={{ mt: 6 }}>
                             {message}
@@ -126,9 +138,6 @@ return (
                         textButton="Deletar"
                         onConfirm={handleDeletePlantas} 
                     />
-            
-                  <Filter marginTop={4} marginLeft={2} plantasList={plantas} setFilteredPlantas={setFilteredPlantas} />
-            </Box>
          </>
      ) : <UpdatePlanta
             planta={selectedPlanta}

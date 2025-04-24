@@ -18,7 +18,7 @@ const theme = createTheme({
       main: '#E8DECD', // Cor secundária (bege)
     },
     background: {
-      default: '#f4f4f4', // Cor de fundo padrão
+      default: '#E8DECD', // Cor de fundo padrão
     },
     error: {
         main: '#C23E2E',

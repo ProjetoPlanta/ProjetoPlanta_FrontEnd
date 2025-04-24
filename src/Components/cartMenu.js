@@ -93,7 +93,7 @@ export default function CartMenu() {
 
   return (
     <>
-      <IconButton color='inherit' onClick={handleCartClick} sx={{ marginLeft: 'auto' }}>
+      <IconButton color='inherit' onClick={handleCartClick} sx={{ color: 'white ', marginLeft: 'auto' }}>
         <ShoppingCartIcon />
       </IconButton>
       <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>

@@ -86,6 +86,7 @@ const Movimentacoes = () => {
 
   return (
     <>
+    <Typography variant='h5' sx={{fontFamily: "Qeilab" }}>Estoque</Typography>
       <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={() => setOpenSnackbar(false)}>
         <Alert onClose={() => setOpenSnackbar(false)} severity={snackbarSeverity} sx={{ width: '100%' }}>
           {snackbarMessage}
@@ -149,7 +150,7 @@ const Movimentacoes = () => {
       />
 
       {/* Histórico de Movimentações */}
-      <Accordion>
+      <Accordion sx={{mt:2}}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h5">Histórico de Movimentações</Typography>
         </AccordionSummary>

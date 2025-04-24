@@ -20,7 +20,7 @@ const CardList = ({
         key={index} 
         sx={{ 
           padding: 2, 
-          height: 500, // Altura fixa
+          height: 380, // Altura fixa
           display: "flex", 
           flexDirection: "column", 
           justifyContent: "space-between", 
@@ -40,7 +40,8 @@ const CardList = ({
             padding: 0
           }}
         >
-          {/* Imagem */}
+          {custom ? custom(item) : (
+        <>
           <Box 
             component="img"
             src={`data:image/png;base64,${item?.imagem}`}
@@ -113,7 +114,10 @@ const CardList = ({
               <DeleteIcon sx={{ fontSize: 24 }} />
             </IconButton>
           )}
-        </CardContent>
+           </>
+      )}
+          
+        </CardContent> 
       </Card>
       
       
