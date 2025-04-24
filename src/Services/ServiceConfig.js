@@ -1,11 +1,12 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://projetoplanta-gedsc0epcqetaeht.brazilsouth-01.azurewebsites.net/',
+  baseURL: 'https://localhost:50000/',
 
   withCredentials:false,
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': '*'
   },
 
 });
