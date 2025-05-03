@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://projetoplanta-gedsc0epcqetaeht.brazilsouth-01.azurewebsites.net/',
+  baseURL: 'https://projetoplanta-gedsc0epcqetaeht.brazilsouth-01.azurewebsites.net/',
 
   withCredentials:false,
   headers: {
