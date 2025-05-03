@@ -1,7 +1,7 @@
 import api from './ServiceConfig';
 
-const API_URL = '/plantas';
-const QR_CODE_URL = 'api/qrcode';
+const API_URL = 'projetoplanta-gedsc0epcqetaeht.brazilsouth-01.azurewebsites.net/plantas';
+const QR_CODE_URL = 'projetoplanta-gedsc0epcqetaeht.brazilsouth-01.azurewebsites.net/api/qrcode';
 
 const PlantaService = {
   cadastrarPlanta: async (planta) => {
