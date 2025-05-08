@@ -76,7 +76,7 @@ export default function VerPlanta() {
         gap={8}
         sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}
       >
-        {/* Como Cuidar + Infos Gerais (lado esquerdo) */}
+        {/* Lado esquerdo - infos e ações */}
         <Box flex={1}>
           <Typography variant="h4" gutterBottom>
             {planta?.nomePopular}
@@ -104,7 +104,7 @@ export default function VerPlanta() {
               { label: "Ambiente", value: planta?.ambiente },
               { label: "Pet Friendly", value: planta.petFriendly ? "Não" : "Sim" },
             ].map((item, index) => (
-              <Box key={index} textAlign="left" justifyContent="space-between" width="23%">
+              <Box key={index} textAlign="left" width="23%">
                 <Typography variant="h8" display="block">
                   {item.label}
                 </Typography>
@@ -129,7 +129,7 @@ export default function VerPlanta() {
           </Box>
         </Box>
 
-        {/* Descrição do Produto (lado direito) */}
+        {/* Lado direito - imagem e descrição */}
         <Box flex={1}>
           <Box display="flex" justifyContent="center" mb={2}>
             <Box
@@ -142,56 +142,62 @@ export default function VerPlanta() {
             />
           </Box>
 
-          <Card>
+          <Card sx={{ minHeight: 180 }}>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
                 <Box>
                   <Typography variant="h4">Descrição do Produto</Typography>
-                  <Typography variant="h6" color="textSecondary">
+                  <Typography
+                    variant="h6"
+                    color="textSecondary"
+                    sx={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 3,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
                     {planta?.descricao}
                   </Typography>
                 </Box>
               </Box>
               <Box display="flex" flexWrap="wrap" gap={2}>
-                <Box width={{ xs: "100%", sm: "48%" }} justifyContent="center">
+                <Box width={{ xs: "100%", sm: "48%" }}>
                   {[
                     { label: "Necessidade de Poda", value: planta?.frequenciaPoda, icon: Forest },
                     { label: "Umidade do Solo", value: planta?.umidadeSolo, icon: Grass },
                     { label: "Necessidade de Água", value: planta?.necessidadeAgua, icon: WaterDrop },
                   ].map((item, index) => (
                     <Card variant="outlined" key={index} sx={{ mb: 2 }}>
-                      <CardContent textAlign="center">
-                        <Box key={index} textAlign="center">
-                          <item.icon sx={{ verticalAlign: "middle" }} />
-                          <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
-                            {item.value}
-                          </Typography>
-                          <Typography variant="h6" color="textSecondary" display="block">
-                            {item.label}
-                          </Typography>
-                        </Box>
+                      <CardContent sx={{ textAlign: "center" }}>
+                        <item.icon sx={{ verticalAlign: "middle" }} />
+                        <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
+                          {item.value}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary">
+                          {item.label}
+                        </Typography>
                       </CardContent>
                     </Card>
                   ))}
                 </Box>
 
-                <Box width={{ xs: "100%", sm: "48%" }} justifyContent="center">
+                <Box width={{ xs: "100%", sm: "48%" }}>
                   {[
                     { label: "Necessidade de Luz", value: planta?.necessidadeLuz, icon: WbSunny },
                     { label: "Epoca de Floração", value: planta?.epocaFloracao, icon: Yard },
                     { label: "Medicinal", value: planta?.medicinal ? "Sim" : "Não", icon: Grass },
                   ].map((item, index) => (
                     <Card variant="outlined" key={index} sx={{ mb: 2 }}>
-                      <CardContent textAlign="center">
-                        <Box key={index} textAlign="center">
-                          <item.icon sx={{ verticalAlign: "middle" }} />
-                          <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
-                            {item.value}
-                          </Typography>
-                          <Typography variant="h6" color="textSecondary" display="block">
-                            {item.label}
-                          </Typography>
-                        </Box>
+                      <CardContent sx={{ textAlign: "center" }}>
+                        <item.icon sx={{ verticalAlign: "middle" }} />
+                        <Typography mb={2} mt={2} variant="h5" fontWeight="bold">
+                          {item.value}
+                        </Typography>
+                        <Typography variant="h6" color="textSecondary">
+                          {item.label}
+                        </Typography>
                       </CardContent>
                     </Card>
                   ))}
@@ -202,7 +208,6 @@ export default function VerPlanta() {
         </Box>
       </Box>
 
-      {/* Snackbar para mostrar mensagem de sucesso */}
       <Snackbar
         open={openSnackbar}
         autoHideDuration={3000}
