@@ -64,7 +64,7 @@ const handleDownloadQRCode = () => {
       <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={8} sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}>
         {/* Primeira Parte */}
         <Box flex={1}>
-          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="700px" mb={2} borderRadius={2} boxShadow={1} />
+          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="100%" height="100%" mb={2} borderRadius={2} boxShadow={1} />
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
