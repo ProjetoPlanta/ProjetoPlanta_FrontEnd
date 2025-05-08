@@ -10,14 +10,14 @@ import PlantaService from "../Services/plantasService";
 import Header from "../Components/header";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addPlanta } from "../Store/cartSlice"; // Ação de adicionar planta no carrinho
+import { addPlanta } from "../Store/cartSlice";
 
 export default function VerPlanta() {
   const { id } = useParams();
   const [planta, setPlanta] = useState([]);
-  const [quantidade, setQuantidade] = useState(1); // Estado para quantidade
-  const [openSnackbar, setOpenSnackbar] = useState(false); // Estado para controle do Snackbar
-  const [qrCodeUrl, setQrCodeUrl] = useState(""); // Novo estado para armazenar o QR code
+  const [quantidade, setQuantidade] = useState(1);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState("");
   const dispatch = useDispatch();
 
   const handlePlanta = async () => {
@@ -29,11 +29,10 @@ export default function VerPlanta() {
     handlePlanta();
   }, []);
 
-  // Função para adicionar a planta ao carrinho
   const handleReservar = () => {
-    if (quantidade <= planta?.estoque && quantidade > 0 ) {
+    if (quantidade <= planta?.estoque && quantidade > 0) {
       dispatch(addPlanta({ ...planta, quantidade, id }));
-      setOpenSnackbar(true); // Exibe mensagem de sucesso
+      setOpenSnackbar(true);
     } else {
       alert("Quantidade excede o estoque disponível");
     }
@@ -41,30 +40,45 @@ export default function VerPlanta() {
 
   const handleGenerateQRCode = async () => {
     try {
-        const qrCodeUrl = await PlantaService.getQRCode(id);
-        if (qrCodeUrl.error) {
-            throw new Error(qrCodeUrl.message);
-        }
-        setQrCodeUrl(qrCodeUrl);
+      const qrCodeUrl = await PlantaService.getQRCode(id);
+      if (qrCodeUrl.error) {
+        throw new Error(qrCodeUrl.message);
+      }
+      setQrCodeUrl(qrCodeUrl);
     } catch (error) {
-        console.error("Erro ao gerar o QR Code:", error);
+      console.error("Erro ao gerar o QR Code:", error);
     }
-};    
+  };
 
-const handleDownloadQRCode = () => {
+  const handleDownloadQRCode = () => {
     const link = document.createElement("a");
     link.href = qrCodeUrl;
     link.download = `${planta.nomePopular}-qrcode.png`;
     link.click();
-};
+  };
 
   return (
     <>
       <Header />
-      <Box display="flex" flexDirection={{ xs: "column", md: "row" }} gap={8} sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}>
+      <Box
+        display="flex"
+        flexDirection={{ xs: "column", md: "row" }}
+        gap={8}
+        sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}
+      >
         {/* Primeira Parte */}
         <Box flex={1}>
-          <Box component="img" src={`data:image/png;base64,${planta?.imagem}`} width="50%" height="50%" mb={2} borderRadius={2} boxShadow={1} />
+          <Box display="flex" justifyContent="center" mb={2}>
+            <Box
+              component="img"
+              src={`data:image/png;base64,${planta?.imagem}`}
+              width="50%"
+              height="auto"
+              borderRadius={2}
+              boxShadow={1}
+            />
+          </Box>
+
           <Card>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
@@ -175,8 +189,6 @@ const handleDownloadQRCode = () => {
             <Typography ml={5} sx={{ textAlign: "justify" }} variant="h6">
               {planta?.comoCuidar}
             </Typography>
-
-             
           </Box>
         </Box>
       </Box>
