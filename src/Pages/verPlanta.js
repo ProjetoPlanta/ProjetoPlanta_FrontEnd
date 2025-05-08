@@ -76,7 +76,35 @@ export default function VerPlanta() {
         gap={8}
         sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}
       >
-        {/* Lado esquerdo - infos e ações */}
+        {/* Lado esquerdo - imagem e como cuidar */}
+        <Box flex={1}>
+          <Box display="flex" justifyContent="center" mb={2}>
+            <Box
+              component="img"
+              src={`data:image/png;base64,${planta?.imagem}`}
+              width="50%"
+              height="auto"
+              borderRadius={2}
+              boxShadow={1}
+            />
+          </Box>
+
+          <Box border={1} borderRadius={2} p={2} mt={5}>
+            <Box display="flex" alignItems="center">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+              <Typography variant="subtitle1" gutterBottom>
+                Como Cuidar
+              </Typography>
+            </Box>
+            <Typography ml={5} sx={{ textAlign: "justify" }} variant="h6">
+              {planta?.comoCuidar}
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Lado direito - infos e ações */}
         <Box flex={1}>
           <Typography variant="h4" gutterBottom>
             {planta?.nomePopular}
@@ -98,7 +126,7 @@ export default function VerPlanta() {
             Reservar
           </Button>
           <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
-            {[
+            {[ 
               { label: "Porte", value: planta?.porte },
               { label: "Estoque", value: planta?.estoque },
               { label: "Ambiente", value: planta?.ambiente },
@@ -114,34 +142,6 @@ export default function VerPlanta() {
               </Box>
             ))}
           </Stack>
-          <Box border={1} borderRadius={2} p={2} mt={5}>
-            <Box display="flex" alignItems="center">
-              <IconButton>
-                <InfoIcon />
-              </IconButton>
-              <Typography variant="subtitle1" gutterBottom>
-                Como Cuidar
-              </Typography>
-            </Box>
-            <Typography ml={5} sx={{ textAlign: "justify" }} variant="h6">
-              {planta?.comoCuidar}
-            </Typography>
-          </Box>
-        </Box>
-
-        {/* Lado direito - imagem e descrição */}
-        <Box flex={1}>
-          <Box display="flex" justifyContent="center" mb={2}>
-            <Box
-              component="img"
-              src={`data:image/png;base64,${planta?.imagem}`}
-              width="50%"
-              height="auto"
-              borderRadius={2}
-              boxShadow={1}
-            />
-          </Box>
-
           <Card sx={{ minHeight: 180 }}>
             <CardContent>
               <Box display="flex" alignItems="center" mb={2}>
@@ -164,7 +164,7 @@ export default function VerPlanta() {
               </Box>
               <Box display="flex" flexWrap="wrap" gap={2}>
                 <Box width={{ xs: "100%", sm: "48%" }}>
-                  {[
+                  {[ 
                     { label: "Necessidade de Poda", value: planta?.frequenciaPoda, icon: Forest },
                     { label: "Umidade do Solo", value: planta?.umidadeSolo, icon: Grass },
                     { label: "Necessidade de Água", value: planta?.necessidadeAgua, icon: WaterDrop },
@@ -184,7 +184,7 @@ export default function VerPlanta() {
                 </Box>
 
                 <Box width={{ xs: "100%", sm: "48%" }}>
-                  {[
+                  {[ 
                     { label: "Necessidade de Luz", value: planta?.necessidadeLuz, icon: WbSunny },
                     { label: "Epoca de Floração", value: planta?.epocaFloracao, icon: Yard },
                     { label: "Medicinal", value: planta?.medicinal ? "Sim" : "Não", icon: Grass },
