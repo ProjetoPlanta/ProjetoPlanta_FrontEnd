@@ -21,12 +21,11 @@ import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 import StoreIcon from '@mui/icons-material/Store';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import YardIcon from '@mui/icons-material/Yard';
-import MailIcon from '@mui/icons-material/Mail';
-import { BrowserRouter as Router } from "react-router-dom";
 import CadastroPlanta from './cadastroPlanta'
 import VisualizarPlanta from './visualizarPlanta'
 import Movimentacoes from './movimentacoes'
 import Pedidos from './Pedidos';
+import Campanhas from './campanhas'
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -120,7 +119,8 @@ export default function Admin() {
                 />, 
     Plantas: <VisualizarPlanta/>,
     Pedidos: <Pedidos/>,
-    Estoque: <Movimentacoes/>
+    Estoque: <Movimentacoes/>,
+    Campanhas: <Campanhas/>
   };
 
 
@@ -152,7 +152,7 @@ export default function Admin() {
         </DrawerHeader>
         <Divider />
         <List>
-          {['Cadastro', 'Plantas','Pedidos','Estoque'].map((text, index) => (
+          {['Cadastro', 'Plantas','Pedidos','Estoque','Campanhas'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }} onClick={() => setCurrentPage(text)}>
               <ListItemButton
                 sx={[
@@ -188,6 +188,7 @@ export default function Admin() {
                 {text === "Plantas" && <YardIcon />}
                 {text === "Pedidos" && <StorefrontIcon />}
                 {text === "Estoque" && <StoreIcon />}
+                {text === "Campanhas" && <StoreIcon />}
                 </ListItemIcon>
                 <ListItemText
                   primary={text}

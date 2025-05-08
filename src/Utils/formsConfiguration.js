@@ -11,6 +11,14 @@ const entityForms = {
         ]
       },
     ],
+
+    formCampanha:[
+      {
+        formFields: [
+          {id:'nome', name:'Nome', type:'text', value: "", required: true},
+        ]
+      },
+    ],
     formCadastroPlanta:[
       {
         formFields:[
@@ -69,7 +77,7 @@ const entityForms = {
           ]},
           
           {id:'umidadeSolo', name:'Umidade de Solo', type:'select', value: "", required: true,  options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
-            {value:'Alta',name:'Alta'}]}
+            {value:'Alta',name:'Alta'}] }
         ]
       },
       {
@@ -77,6 +85,12 @@ const entityForms = {
           {id:'petFriendly', name:'Pet Friendly', type:'checkbox', value: false,},
           {id:'atraiAbelha', name:'Atrai Abelha', type:'checkbox', value:false},
           
+        ]
+      },
+      {
+        formFields:[
+          {id:'tags', name:'Campanhas', options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
+            {value:'Alta',name:'Alta'}], type:'select', multiple:true},          
         ]
       }
     ]

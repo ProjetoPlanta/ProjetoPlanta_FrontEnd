@@ -39,7 +39,7 @@ const DragDropUpload = ({handleUpload, previewImage}) => {
                   setImagemPreview(`data:image/png;base64,${previewImage}`)
                   handleUpload(previewImage)
                 }
-              }, []);
+              }, [previewImage]);
 
   return (
     <Box

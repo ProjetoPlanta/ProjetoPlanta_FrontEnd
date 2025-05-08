@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Card, CardContent, Typography, IconButton, Link, Button } from "@mui/material";
+import { Box, Card, CardContent, Typography, IconButton, Link, Button, Chip } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 const CardList = ({ 
@@ -11,116 +11,126 @@ const CardList = ({
   clickCard, 
   cardsPerRow = 4, 
   handleGenerateQRCode, 
-  containerWidth = "100%"  // Adicionando a prop containerWidth com valor default '100%'
+  containerWidth = "100%",
+  showAtivarCampanha,
+  handleAtivarCampanha
 }) => {
   return (
     <Box mt={4} display="grid" gridTemplateColumns={`repeat(${cardsPerRow}, 1fr)`} gap={2} width={containerWidth}>
-      {items.map((item, index) => (
+      {items.map((item) => (
         <Card 
-        key={index} 
-        sx={{ 
-          padding: 2, 
-          height: 380, // Altura fixa
-          display: "flex", 
-          flexDirection: "column", 
-          justifyContent: "space-between", 
-          alignItems: "center", 
-          textAlign: "center"
-        }}
-      >
-        <CardContent 
+          key={item.id} 
           sx={{ 
+            padding: 2, 
+            height: 380,
             display: "flex", 
             flexDirection: "column", 
-            alignItems: "center", 
             justifyContent: "space-between", 
-            gap: 1, 
-            height: "100%", 
-            width: "100%",
-            padding: 0
+            alignItems: "center", 
+            textAlign: "center"
           }}
         >
-          {custom ? custom(item) : (
-        <>
-          <Box 
-            component="img"
-            src={`data:image/png;base64,${item?.imagem}`}
-            alt={item.nome}
+          <CardContent 
             sx={{ 
-              width: 120, 
-              height: 120, 
-              objectFit: "cover", 
-              borderRadius: 2, 
-              cursor: 'pointer' 
-            }}
-            onClick={() => clickCard(item)}
-          />
-      
-          {/* Nome */}
-          <Typography 
-            variant="h6" 
-            component="div" 
-            sx={{ 
-              fontWeight: "bold", 
-              mt: 1,
-              minHeight: 56, // Ajusta para caber 2 linhas sem cortar
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              textAlign: "center",
-              px: 1
+              display: "flex", 
+              flexDirection: "column", 
+              alignItems: "center", 
+              justifyContent: "space-between", 
+              gap: 1, 
+              height: "100%", 
+              width: "100%",
+              padding: 0
             }}
           >
-            <Link 
-              href="#" 
-              underline="hover" 
-              onClick={() => clickCard(item)}
-              sx={{ color: "inherit", textDecoration: "none" }}
-            >
-              {item.nome}
-            </Link>
-          </Typography>
-      
-          {/* Descrição */}
-          <Typography 
-            variant="body2" 
-            color="text.secondary" 
-            sx={{ 
-              flexGrow: 1, 
-              overflow: "auto", 
-              px: 1,
-              mb: 1
-            }}
-          >
-            {item.descricao}
-          </Typography>
-      
-          {/* Preço */}
-          <Typography 
-            variant="body1" 
-            fontWeight="bold"
-          >
-            R$ {item.preco}
-          </Typography>
-      
-          {/* Ações */}
-          {qrCode && (
-            <Button variant="contained" size="small" onClick={() => handleGenerateQRCode(item)}>
-              Gerar QR Code
-            </Button>
-          )}
-          {showDeleteButton && (
-            <IconButton color="error" onClick={() => handleDeleteButton(item)}>
-              <DeleteIcon sx={{ fontSize: 24 }} />
-            </IconButton>
-          )}
-           </>
-      )}
-          
-        </CardContent> 
-      </Card>
-      
-      
+            {custom ? custom(item) : (
+              <>
+                <Box
+                  component="img"
+                  src={`data:image/png;base64,${item?.imagem}`}
+                  alt={item.nome}
+                  sx={{ 
+                    width: 120, 
+                    height: 120, 
+                    objectFit: "cover", 
+                    borderRadius: 2, 
+                    cursor: 'pointer' 
+                  }}
+                  onClick={() => clickCard(item)}
+                />
+
+                <Typography 
+                  variant="h6" 
+                  component="div" 
+                  sx={{ 
+                    fontWeight: "bold", 
+                    mt: 1,
+                    minHeight: 56,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    px: 1
+                  }}
+                >
+                  <Link 
+                    href="#" 
+                    underline="hover" 
+                    onClick={(e) => { e.preventDefault(); clickCard(item); }}
+                    sx={{ color: "inherit", textDecoration: "none" }}
+                  >
+                    {item.nome}
+                  </Link>
+                </Typography>
+
+                <Typography 
+                  variant="body2" 
+                  color="text.secondary" 
+                  sx={{ 
+                    flexGrow: 1, 
+                    overflow: "auto", 
+                    px: 1,
+                    mb: 1
+                  }}
+                >
+                  {item.descricao}
+                </Typography>
+
+                {item.preco && (
+                  <Typography variant="body1" fontWeight="bold">
+                    R$ {item.preco}
+                  </Typography>
+                )}
+
+              {showAtivarCampanha && (
+                <Chip 
+                  label={item.isAtivo ? "Ativa" : "Inativa"} 
+                  color={item.isAtivo ? "success" : "default"} 
+                  size="small"
+                  sx={{ mt: 1 }}
+                />
+              )
+              }
+                {qrCode && (
+                  <Button variant="contained" size="small" onClick={() => handleGenerateQRCode(item)}>
+                    Gerar QR Code
+                  </Button>
+                )}
+
+                {showDeleteButton && (
+                  <IconButton color="error" onClick={() => handleDeleteButton(item)}>
+                    <DeleteIcon sx={{ fontSize: 24 }} />
+                  </IconButton>
+                )}
+
+                {showAtivarCampanha && (
+                  <Button variant="contained" size="small" onClick={() => handleAtivarCampanha(item)}>
+                    {item.ativa ? "Desativar" : "Ativar"} Campanha
+                  </Button>
+                )}
+              </>
+            )}
+          </CardContent>
+        </Card>
       ))}
     </Box>
   );

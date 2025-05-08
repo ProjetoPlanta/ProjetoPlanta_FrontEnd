@@ -1,10 +1,27 @@
 import * as React from 'react';
 import { useState, useEffect } from "react";
-import { List, ListItem, FormControl, InputLabel, Select, MenuItem, Checkbox, FormControlLabel, Typography, Divider, Button, Slider, Box, Paper } from '@mui/material';
+import {
+  List,
+  ListItem,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Checkbox,
+  FormControlLabel,
+  Typography,
+  Divider,
+  Button,
+  Slider,
+  Box,
+} from '@mui/material';
+ import CampanhaService from '../Services/campanhaService';
 
-export default function Filter({ plantasList, setFilteredPlantas, marginTop, marginLeft }) {
+export default function Filter({ plantasList, setFilteredPlantas }) {
   const [filters, setFilters] = useState({});
   const [maxPrice, setMaxPrice] = useState(0);
+  const [campanhas, setCampanhas] = useState([]);
+  const [campanhasSelecionadas, setCampanhasSelecionadas] = useState([]);
 
   useEffect(() => {
     if (plantasList.length) {
@@ -14,37 +31,70 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
   }, [plantasList]);
 
   useEffect(() => {
+    const buscarCampanhasAtivas = async () => {
+      const response = await CampanhaService.getAllcampanhas();
+      if (!response.error) {
+        const campanhasAtivas = response.filter(c => c.isAtivo);
+        setCampanhas(campanhasAtivas);
+      } else {
+        console.error(response.message);
+      }
+    };
+
+    buscarCampanhasAtivas();
+  }, []);
+
+  useEffect(() => {
     let filtered = plantasList;
+
     Object.entries(filters).forEach(([key, value]) => {
       if (value && key !== 'preco') {
         filtered = filtered.filter(planta => planta[key] === value);
       }
     });
+
     if (filters.preco !== undefined) {
       filtered = filtered.filter(planta => planta.preco <= filters.preco);
     }
+
+    if (campanhasSelecionadas.length > 0) {
+      filtered = filtered.filter(planta =>
+        Array.isArray(planta.tags) &&
+        campanhasSelecionadas.every(id => planta.tags.includes(id))
+      );
+    }
+
     setFilteredPlantas(filtered);
-  }, [filters, plantasList, setFilteredPlantas]);
+  }, [filters, plantasList, setFilteredPlantas, campanhasSelecionadas]);
 
   const handleFilterChange = (id, value) => {
     setFilters(prev => ({ ...prev, [id]: value }));
   };
 
+  const handleCampanhaToggle = (id) => {
+    setCampanhasSelecionadas(prev =>
+      prev.includes(id)
+        ? prev.filter(campanhaId => campanhaId !== id)
+        : [...prev, id]
+    );
+  };
+
   const clearFilters = () => {
     setFilters({});
+    setCampanhasSelecionadas([]);
   };
 
   const formCadastroPlanta = [
-    { id: 'ambiente', name: 'Ambiente', options: [{label: 'Interno 🏠', value: 'Interno'},{label:'Externo 🌱', value: 'Externo'}] },
+    { id: 'ambiente', name: 'Ambiente', options: [{ label: 'Interno 🏠', value: 'Interno' }, { label: 'Externo 🌱', value: 'Externo' }] },
     { id: 'epocaFloracao', name: 'Época de Floração', options: [
       { label: 'Inverno ❄️', value: 'Inverno' },
       { label: 'Verão ☀️', value: 'Verão' },
       { label: 'Outono 🍂', value: 'Outono' },
-      { label: 'Primavera 🌷', value: 'Primavera' }]},
+      { label: 'Primavera 🌷', value: 'Primavera' }] },
     { id: 'frequenciaPoda', name: 'Frequência de Poda', options: [
       { label: 'Baixa ✂️', value: 'Baixa' },
       { label: 'Média ✂️✂️', value: 'Média' },
-      { label: 'Alta ✂️✂️✂️', value: 'Alta' }]},
+      { label: 'Alta ✂️✂️✂️', value: 'Alta' }] },
     { id: 'necessidadeAgua', name: 'Necessidade de Água', options: [
       { label: 'Baixa 💧', value: 'Baixa' },
       { label: 'Média 💦', value: 'Média' },
@@ -52,7 +102,7 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
     { id: 'porte', name: 'Porte', options: [
       { label: 'Pequeno 🌱', value: 'Pequeno' },
       { label: 'Médio 🌿', value: 'Médio' },
-      { label: 'Grande 🌳', value: 'Grande' }]},
+      { label: 'Grande 🌳', value: 'Grande' }] },
     { id: 'necessidadeLuz', name: 'Necessidade de Luz', options: [
       { label: 'Baixa 🔅', value: 'Baixa' },
       { label: 'Media 🔆', value: 'Media' },
@@ -66,26 +116,32 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
   ];
 
   return (
-      <Box
-            sx={{
-              width: { xs: '100%', md: '250px' }, // Responsivo
-              backgroundColor: 'white',
-              borderRadius: 2,
-              boxShadow: 3,
-              p: 2,
-              flexShrink: 0,
-            }}
-        >      
-          <Typography variant="h5" gutterBottom sx={{ marginBottom: 2, marginLeft: 3, marginTop: 5 }}>
-            Filtros
-          </Typography>
+    <Box
+      sx={{
+        width: { xs: '100%', md: '250px' },
+        backgroundColor: 'white',
+        borderRadius: 2,
+        boxShadow: 3,
+        p: 2,
+        flexShrink: 0,
+      }}
+    >
+      <Typography variant="h5" gutterBottom sx={{ marginBottom: 2 }}>
+        Filtros
+      </Typography>
       <Divider sx={{ mb: 2 }} />
+
       <List>
-        {formCadastroPlanta?.map(field => (
+        {formCadastroPlanta.map(field => (
           <ListItem key={field.id} disablePadding sx={{ mb: 2 }}>
             {field.type === 'checkbox' ? (
               <FormControlLabel
-                control={<Checkbox onChange={e => handleFilterChange(field.id, e.target.checked)} />}
+                control={
+                  <Checkbox
+                    checked={!!filters[field.id]}
+                    onChange={e => handleFilterChange(field.id, e.target.checked)}
+                  />
+                }
                 label={field.name}
               />
             ) : (
@@ -99,14 +155,40 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
                   onChange={e => handleFilterChange(field.id, e.target.value)}
                 >
                   <MenuItem value="">Todos</MenuItem>
-                  {field?.options?.map(option => (
-                    <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+                  {field.options.map(option => (
+                    <MenuItem key={option.value} value={option.value}>
+                      {option.label}
+                    </MenuItem>
                   ))}
                 </Select>
               </FormControl>
             )}
           </ListItem>
         ))}
+
+        {/* Campanhas */}
+        {campanhas.length > 0 && (
+          <>
+            <Divider sx={{ my: 2 }} />
+            <Typography variant="subtitle1" sx={{ ml: 1 }}>
+              Campanhas 
+            </Typography>
+            {campanhas.map(campanha => (
+              <ListItem key={campanha.id} disablePadding>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={campanhasSelecionadas.includes(campanha.id)}
+                      onChange={() => handleCampanhaToggle(campanha.id)}
+                    />
+                  }
+                  label={campanha.nome || `Campanha #${campanha.id}`}
+                />
+              </ListItem>
+            ))}
+          </>
+        )}
+
         <ListItem sx={{ flexDirection: 'column', alignItems: 'stretch', mb: 2 }}>
           <Typography gutterBottom>Preço Máximo</Typography>
           <Slider
@@ -118,6 +200,7 @@ export default function Filter({ plantasList, setFilteredPlantas, marginTop, mar
             valueLabelDisplay="auto"
           />
         </ListItem>
+
         <ListItem sx={{ justifyContent: 'center' }}>
           <Button variant="contained" color="secondary" onClick={clearFilters} fullWidth>
             Limpar Filtros

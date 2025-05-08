@@ -32,10 +32,12 @@ const Movimentacoes = () => {
     };
 
     const fetchMovimentacoes = async () => {
-      const response = await MovimentacoesService.getAllMovimentacoes();
-      // Ordenar as movimentações pela data (da mais recente para a mais antiga)
-      const sortedMovimentacoes = response.sort((a, b) => new Date(b.data) - new Date(a.data));
-      setMovimentacoes(sortedMovimentacoes);
+      const response = await MovimentacoesService?.getAllMovimentacoes();
+      if(!response.error){
+        const sortedMovimentacoes = response?.sort((a, b) => new Date(b.data) - new Date(a.data));
+        setMovimentacoes(sortedMovimentacoes);
+      }
+      
     };
 
     fetchPlantas();
