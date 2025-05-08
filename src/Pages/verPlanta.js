@@ -1,5 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, Typography, Stack, Button, TextField, Box, IconButton, Snackbar } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Stack,
+  Button,
+  TextField,
+  Box,
+  IconButton,
+  Snackbar
+} from "@mui/material";
 import InfoIcon from "@mui/icons-material/Info";
 import WbSunny from "@mui/icons-material/WbSunny";
 import Yard from "@mui/icons-material/Yard";
@@ -66,7 +76,60 @@ export default function VerPlanta() {
         gap={8}
         sx={{ paddingTop: 5, paddingBottom: 5, paddingLeft: 16, paddingRight: 16 }}
       >
-        {/* Primeira Parte */}
+        {/* Como Cuidar + Infos Gerais (lado esquerdo) */}
+        <Box flex={1}>
+          <Typography variant="h4" gutterBottom>
+            {planta?.nomePopular}
+          </Typography>
+          <Typography variant="h5" color="textSecondary" gutterBottom>
+            R$ {planta.preco}
+          </Typography>
+          <TextField
+            label="Quantidade"
+            type="number"
+            fullWidth
+            variant="outlined"
+            sx={{ mb: 2 }}
+            value={quantidade}
+            onChange={(e) => setQuantidade(Number(e.target.value))}
+            slotProps={{ htmlInput: { maxLength: planta?.estoque } }}
+          />
+          <Button variant="contained" sx={{ mb: 2 }} fullWidth onClick={handleReservar}>
+            Reservar
+          </Button>
+          <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
+            {[
+              { label: "Porte", value: planta?.porte },
+              { label: "Estoque", value: planta?.estoque },
+              { label: "Ambiente", value: planta?.ambiente },
+              { label: "Pet Friendly", value: planta.petFriendly ? "Não" : "Sim" },
+            ].map((item, index) => (
+              <Box key={index} textAlign="left" justifyContent="space-between" width="23%">
+                <Typography variant="h8" display="block">
+                  {item.label}
+                </Typography>
+                <Typography variant="h5" fontWeight="bold">
+                  {item.value}
+                </Typography>
+              </Box>
+            ))}
+          </Stack>
+          <Box border={1} borderRadius={2} p={2} mt={5}>
+            <Box display="flex" alignItems="center">
+              <IconButton>
+                <InfoIcon />
+              </IconButton>
+              <Typography variant="subtitle1" gutterBottom>
+                Como Cuidar
+              </Typography>
+            </Box>
+            <Typography ml={5} sx={{ textAlign: "justify" }} variant="h6">
+              {planta?.comoCuidar}
+            </Typography>
+          </Box>
+        </Box>
+
+        {/* Descrição do Produto (lado direito) */}
         <Box flex={1}>
           <Box display="flex" justifyContent="center" mb={2}>
             <Box
@@ -136,60 +199,6 @@ export default function VerPlanta() {
               </Box>
             </CardContent>
           </Card>
-        </Box>
-
-        {/* Segunda Parte */}
-        <Box flex={1}>
-          <Typography variant="h4" gutterBottom>
-            {planta?.nomePopular}
-          </Typography>
-          <Typography variant="h5" color="textSecondary" gutterBottom>
-            R$ {planta.preco}
-          </Typography>
-          <TextField
-            label="Quantidade"
-            type="number"
-            fullWidth
-            variant="outlined"
-            sx={{ mb: 2 }}
-            value={quantidade}
-            onChange={(e) => setQuantidade(Number(e.target.value))}
-            slotProps={{ htmlInput: { maxLength: planta?.estoque } }}
-          />
-          <Button variant="contained" sx={{ mb: 2 }} fullWidth onClick={handleReservar}>
-            Reservar
-          </Button>
-          <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
-            {[
-              { label: "Porte", value: planta?.porte },
-              { label: "Estoque", value: planta?.estoque },
-              { label: "Ambiente", value: planta?.ambiente },
-              { label: "Pet Friendly", value: planta.petFriendly ? "Não" : "Sim" },
-            ].map((item, index) => (
-              <Box key={index} textAlign="left" justifyContent="space-between" width="23%">
-                <Typography variant="h8" display="block">
-                  {item.label}
-                </Typography>
-                <Typography variant="h5" fontWeight="bold">
-                  {item.value}
-                </Typography>
-              </Box>
-            ))}
-          </Stack>
-          <Box border={1} borderRadius={2} p={2} mt={5}>
-            <Box display="flex" alignItems="center">
-              <IconButton>
-                <InfoIcon />
-              </IconButton>
-              <Typography variant="subtitle1" gutterBottom>
-                Como Cuidar
-              </Typography>
-            </Box>
-
-            <Typography ml={5} sx={{ textAlign: "justify" }} variant="h6">
-              {planta?.comoCuidar}
-            </Typography>
-          </Box>
         </Box>
       </Box>
 
