@@ -89,7 +89,8 @@ export default function VerPlanta() {
             />
           </Box>
 
-          <Box border={1} borderRadius={2} p={2} mt={5}>
+          <Box border="1px solid #ddd" borderRadius={2} p={2} mt={5} sx={{ backgroundColor: "#f9f9f9" }}>
+
             <Box display="flex" alignItems="center">
               <IconButton>
                 <InfoIcon />
