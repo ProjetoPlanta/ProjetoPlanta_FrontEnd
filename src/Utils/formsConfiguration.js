@@ -70,8 +70,8 @@ const entityForms = {
               {value:'Alta',name:'Alta'},
             ]
           },
-          {id:'porte', name:'Porte', type:'select', value: "", required: true, options:[{value:'pequeno',name:'Pequeno'},{value:'Média',name:'Média'},
-            {value:'grande',name:'Grande'}]},
+          {id:'porte', name:'Porte', type:'select', value: "", required: true, options:[{value:'Pequeno',name:'Pequeno'},{value:'Médio',name:'Médio'},
+            {value:'Grande',name:'Grande'}]},
           {id:'necessidadeLuz', name:'Necessidade de Luz', type:'select', value: "", required: true,  options:[{value:'Baixa',name:'Baixa'},{value:'Média',name:'Média'},
             {value:'Alta',name:'Alta'},
           ]},
