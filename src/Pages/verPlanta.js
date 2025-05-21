@@ -152,11 +152,13 @@ export default function VerPlanta() {
                     variant="h6"
                     color="textSecondary"
                     sx={{
-                      display: "-webkit-box",
+                      /*display: "-webkit-box",
                       WebkitLineClamp: 3,
                       WebkitBoxOrient: "vertical",
                       overflow: "hidden",
-                      textOverflow: "ellipsis",
+                      textOverflow: "ellipsis",*/
+                      px: 1,
+                      mb: 1
                     }}
                   >
                     {planta?.descricao}

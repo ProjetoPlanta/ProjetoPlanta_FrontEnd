@@ -86,8 +86,12 @@ const CardList = ({
                   variant="body2" 
                   color="text.secondary" 
                   sx={{ 
-                    flexGrow: 1, 
-                    overflow: "auto", 
+                    //flexGrow: 1, 
+                    display: "-webkit-box",
+                    WebkitLineClamp: 3,
+                    WebkitBoxOrient: "vertical",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
                     px: 1,
                     mb: 1
                   }}
