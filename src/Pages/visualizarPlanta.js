@@ -96,7 +96,6 @@ return (
     <Box>
         { !isUpdate ? (
         <>
-           
                     <Typography variant='h5' sx={{fontFamily: "Qeilab",  marginBottom: 2 }}>
                     Todas as Plantas
                     </Typography>

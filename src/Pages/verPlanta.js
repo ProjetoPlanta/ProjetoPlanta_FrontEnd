@@ -89,7 +89,7 @@ export default function VerPlanta() {
             />
           </Box>
 
-          <Box border="1px solid #ddd" borderRadius={2} p={2} mt={5} sx={{ backgroundColor: "#f9f9f9" }}>
+          <Box border="1px solid #ddd" borderRadius={2} p={2} mt={5} sx={{ backgroundColor: "#e4f0e7" }}>
 
             <Box display="flex" alignItems="center">
               <IconButton>
@@ -126,7 +126,7 @@ export default function VerPlanta() {
           <Button variant="contained" sx={{ mb: 2 }} fullWidth onClick={handleReservar}>
             Reservar
           </Button>
-          <Stack direction="row" spacing={1} mb={2} justifyContent="space-between">
+          <Stack direction="row" color="#0F4C1A" spacing={1} mb={2} justifyContent="space-between">
             {[ 
               { label: "Porte", value: planta?.porte },
               { label: "Estoque", value: planta?.estoque },
