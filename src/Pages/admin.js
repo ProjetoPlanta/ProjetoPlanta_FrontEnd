@@ -144,7 +144,16 @@ export default function Admin() {
      />
      
       </AppBar>
-      <Drawer sx={{backgroundColor:" #E8DECD"}} variant="permanent" open={open}>
+      <Drawer
+  variant="permanent"
+  open={open}
+  PaperProps={{
+    sx: {
+      backgroundColor: "#E8DECD",
+      color: "#000",
+    },
+  }}
+>
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
